@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soft UI Checkout Form</title>
+   <link rel="icon" type="image/png" href="images/logoss.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Updated to match the new Soft UI aesthetic */
+    body {
+      background-color: #f0f2f5;
+    }
+    
+    .soft-panel {
+      background-color: #f4f5f8;
+      border: 1.5px solid #ffffff;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+      border-radius: 1.5rem;
+      padding: 2rem;
+    }
+
+    .input-class {
+      width: 100%;
+      border-radius: 9999px; /* Pill shape */
+      padding: 0.85rem 1.5rem;
+      color: #374151;
+      background-color: #e8eaed; /* Soft gray inset background */
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .input-class::placeholder {
+      color: #9ca3af;
+      font-weight: 400;
+    }
+
+    .input-class:focus {
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(226, 232, 240, 0.8);
+    }
+
+    .label-class {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: #1f2937;
+      white-space: nowrap;
+    }
+
+    /* Pastel gradient button matching the reference */
+    .btn-gradient {
+      background: linear-gradient(to right, #dbeafe, #f3e8ff, #fce7f3);
+      color: #000000;
+      border: 1px solid #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    }
+    .btn-gradient:hover {
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <div class="min-h-screen p-4 md:p-8 flex justify-center font-sans overflow-x-hidden">
+    
+    <div class="w-full max-w-5xl space-y-6 relative z-10">
+      
+      <!-- Top Banners -->
+      <div class="soft-panel !py-4 flex items-center gap-3 text-gray-600 hover:bg-white/50 transition-colors cursor-pointer group">
+        <i data-lucide="tag" class="w-5 h-5 text-cyan-500"></i>
+        <span class="text-sm">
+          Have a coupon? <a href="#" class="text-gray-900 font-medium group-hover:underline decoration-cyan-500 underline-offset-4">Click here to enter your code</a>
+        </span>
+      </div>
+
+      <!-- Main Form Area -->
+      <div class="soft-panel">
+        <h2 class="text-3xl font-light text-gray-800 mb-8 border-b border-gray-200 pb-4 pl-1">Billing details</h2>
+
+        <div class="max-w-4xl">
+          <!-- Using CSS Grid to perfectly align labels and inputs like the reference image -->
+          <div class="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-y-5 gap-x-6 items-center">
+            
+            <label class="label-class">First name</label>
+            <input type="text" placeholder="Type here..." class="input-class" />
+
+            <label class="label-class">Phone</label>
+            <input type="tel" placeholder="Type here..." class="input-class" />
+
+            <label class="label-class">Email address</label>
+            <input type="email" placeholder="Type here..." class="input-class" />
+
+            <label class="label-class self-start pt-3">Residential address</label>
+            <div class="space-y-3">
+              <input type="text" placeholder="House number and street name" class="input-class" />
+              <input type="text" placeholder="Apartment, suite, unit, etc." class="input-class" />
+            </div>
+
+            <label class="label-class">PIN Code</label>
+            <input type="text" placeholder="Type here..." class="input-class sm:max-w-[15rem]" />
+
+            <label class="label-class self-start pt-3">Order notes</label>
+            <textarea rows="4" placeholder="Type here..." class="input-class resize-none !rounded-3xl"></textarea>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Your Order Section -->
+      <div class="pt-8 space-y-6">
+        <div class="flex justify-between items-end mb-2">
+          <h2 class="text-3xl font-light text-gray-800 pl-1">Your order</h2>
+          
+          <button 
+            id="clear-cart-btn"
+            onclick="clearCart()"
+            class="text-red-500 hover:text-red-700 text-sm font-medium transition-colors px-4 py-2 rounded-xl hover:bg-red-50 flex items-center gap-2"
+          >
+            <i data-lucide="trash-2" class="w-4 h-4"></i> Cancel Entire Order
+          </button>
+        </div>
+        
+        <!-- Cart Items Container -->
+        <div id="cart-container">
+          <div class="soft-panel !p-0 overflow-hidden mb-8">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-gray-200/80 bg-white/40">
+                  <th class="p-5 px-8 text-sm font-semibold text-gray-700 w-3/5">Product</th>
+                  <th class="p-5 text-sm font-semibold text-gray-700">Subtotal</th>
+                  <th class="p-5 px-8 text-sm font-semibold text-gray-700 w-24 text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody id="cart-table-body" class="divide-y divide-gray-200/80">
+                <!-- Cart rows injected via JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Payment Section -->
+          <div class="soft-panel space-y-6">
+             <div>
+               <h3 class="text-base font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-3">Knit Pay</h3>
+               <div class="bg-[#e8eaed] shadow-inner border border-white rounded-xl p-5 text-gray-700 text-sm">
+                 Kindly complete the payment in order to get your order shipped to your doorsteps.
+               </div>
+             </div>
+             <p class="text-sm text-gray-500 leading-relaxed pt-2">
+               Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="#" class="text-cyan-600 hover:text-cyan-700 hover:underline transition-colors font-medium">privacy policy</a>.
+             </p>
+             <div class="flex justify-center sm:justify-end pt-4">
+               <button class="btn-gradient px-12 py-3.5 rounded-full font-bold text-lg transition-all">
+                 Place order
+               </button>
+             </div>
+          </div>
+        </div>
+
+        <!-- Empty Cart Message -->
+        <div id="empty-cart-container" class="hidden soft-panel text-center space-y-4">
+          <div class="w-20 h-20 bg-[#e8eaed] border border-white shadow-inner rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="trash-2" class="w-10 h-10 text-gray-400"></i>
+          </div>
+          <h3 class="text-2xl font-medium text-gray-800">Your cart is empty</h3>
+          <p class="text-gray-500">You have cancelled your entire order.</p>
+          <button 
+            onclick="restoreCart()"
+            class="mt-6 btn-gradient px-8 py-3 rounded-full font-medium transition-all inline-block"
+          >
+            Restore Item
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Custom Footer -->
+      <div class="mt-16 mb-8 relative soft-panel !p-10 md:!p-16 text-gray-800 overflow-hidden">
+         <!-- Decorative elements -->
+         <div class="absolute top-0 left-12 w-8 h-8 bg-cyan-400/20 border border-white rounded-full -translate-y-1/2 shadow-sm"></div>
+         <div class="absolute bottom-0 left-1/2 w-20 h-20 bg-blue-400/20 border border-white rounded-full translate-y-1/2 -translate-x-1/2 shadow-sm"></div>
+         <div class="absolute top-8 right-[20%] text-cyan-400/60">
+            <i data-lucide="plus" stroke-width="4" class="w-5 h-5"></i>
+         </div>
+         
+         <div class="grid grid-cols-1 md:grid-cols-4 gap-10 relative z-10">
+           <!-- Socials -->
+           <div class="flex items-center gap-5 pt-8 md:pt-0 text-gray-400">
+             <i data-lucide="facebook" class="w-5 h-5 cursor-pointer hover:text-cyan-500 transition-colors"></i>
+             <i data-lucide="linkedin" class="w-5 h-5 cursor-pointer hover:text-cyan-500 transition-colors"></i>
+             <i data-lucide="twitter" class="w-5 h-5 cursor-pointer hover:text-cyan-500 transition-colors"></i>
+             <i data-lucide="rss" class="w-5 h-5 cursor-pointer hover:text-cyan-500 transition-colors"></i>
+           </div>
+           
+           <!-- Links Col 1 -->
+           <div class="space-y-4 text-sm font-medium text-gray-600">
+              <a href="#" class="block hover:text-cyan-600 transition-colors">Home</a>
+              <a href="#" class="block hover:text-cyan-600 transition-colors">Shop</a>
+              <a href="#" class="block hover:text-cyan-600 transition-colors">Contact Us</a>
+           </div>
+           
+           <!-- Links Col 2 -->
+           <div class="space-y-4 text-sm font-medium text-gray-600">
+              <a href="#" class="block hover:text-cyan-600 transition-colors">Refund Policy</a>
+              <a href="#" class="block hover:text-cyan-600 transition-colors">Terms And Conditions</a>
+              <a href="#" class="block hover:text-cyan-600 transition-colors">Privacy Policy</a>
+           </div>
+           
+           <!-- Button -->
+           <div class="flex md:justify-end items-center">
+              <button class="btn-gradient px-8 py-3 rounded-full font-bold transition-all">
+                Contact Us
+              </button>
+           </div>
+         </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Initialize icons
+    lucide.createIcons();
+
+    // Application State
+    let cartItems = [
+      {
+        id: 1,
+        name: "Unitree Go2 EDU With Remote controller, Standard Battery × 1",
+        price: 1160000,
+        quantity: 1
+      }
+    ];
+
+    // Cart Rendering Logic
+    function renderCart() {
+      const cartContainer = document.getElementById('cart-container');
+      const emptyCartContainer = document.getElementById('empty-cart-container');
+      const cartTableBody = document.getElementById('cart-table-body');
+      const clearCartBtn = document.getElementById('clear-cart-btn');
+
+      if (cartItems.length > 0) {
+        cartContainer.classList.remove('hidden');
+        emptyCartContainer.classList.add('hidden');
+        clearCartBtn.classList.remove('hidden');
+
+        let subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+        let tableHTML = '';
+
+        cartItems.forEach(item => {
+          tableHTML += `
+            <tr class="hover:bg-white/30 transition-colors group">
+              <td class="p-5 px-8 text-sm text-gray-600">${item.name}</td>
+              <td class="p-5 text-xl text-gray-800 tracking-tight">₹${item.price * item.quantity}</td>
+              <td class="p-5 px-8 text-center">
+                <button onclick="removeItem(${item.id})" class="text-red-400 hover:text-red-600 p-2.5 rounded-full hover:bg-red-50/80 transition-all opacity-70 group-hover:opacity-100" title="Cancel product">
+                  <i data-lucide="trash-2" class="w-5 h-5 mx-auto"></i>
+                </button>
+              </td>
+            </tr>
+          `;
+        });
+
+        tableHTML += `
+          <tr class="hover:bg-white/30 transition-colors">
+            <td class="p-5 px-8 text-sm font-semibold text-gray-700 text-right">Subtotal</td>
+            <td colspan="2" class="p-5 text-xl font-medium text-gray-800 tracking-tight">₹${subtotal}</td>
+          </tr>
+          <tr class="hover:bg-white/30 transition-colors">
+            <td class="p-5 px-8 text-sm font-semibold text-gray-700 text-right">Shipment 1</td>
+            <td colspan="2" class="p-5 text-sm text-gray-600">Free shipping</td>
+          </tr>
+          <tr class="bg-white/50">
+            <td class="p-5 px-8 text-base font-bold text-gray-800 text-right">Total</td>
+            <td colspan="2" class="p-5 text-2xl font-bold text-gray-900 tracking-tight">₹${subtotal}</td>
+          </tr>
+        `;
+
+        cartTableBody.innerHTML = tableHTML;
+        lucide.createIcons();
+      } else {
+        cartContainer.classList.add('hidden');
+        emptyCartContainer.classList.remove('hidden');
+        clearCartBtn.classList.add('hidden');
+      }
+    }
+
+    // Cart Actions
+    function removeItem(id) {
+      cartItems = cartItems.filter(item => item.id !== id);
+      renderCart();
+    }
+
+    function clearCart() {
+      cartItems = [];
+      renderCart();
+    }
+
+    function restoreCart() {
+      cartItems = [
+        {
+          id: 1,
+          name: "Unitree Go2 EDU With Remote controller, Standard Battery × 1",
+          price: 1160000,
+          quantity: 1
+        }
+      ];
+      renderCart();
+    }
+
+    // Initial render
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCart();
+    });
+  </script>
+</body>
+</html>

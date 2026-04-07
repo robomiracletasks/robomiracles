@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboMiracle - Rental Partner</title>
+     <link rel="icon" type="image/webp" href="images/logoss.webp">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --pink:       #de2380;
+            --blue:       #3b82f6;
+            --cyan:       #06b6d4;
+            --dark:       #06060a;
+            --card-bg:    #0f0f1a;
+            --surface:    #13131f;
+            --border:     rgba(255,255,255,0.07);
+            --text:       #f0f0f8;
+            --muted:      #8888aa;
+        }
+
+        @keyframes gradient-flow {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.4; }
+        }
+        @keyframes shimmer {
+            from { left: -100%; }
+            to   { left: 100%; }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--pink) 0%, var(--blue) 50%, var(--cyan) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-flow 6s ease infinite;
+        }
+
+        /* ── TOAST ── */
+        #toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            z-index: 9999;
+            min-width: 300px;
+            max-width: 90vw;
+            padding: 1rem 1.4rem;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+        #toast.toast-ok  { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+        #toast.toast-err { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            padding: 7rem 3rem 5rem;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .blob-pink {
+            width: 35rem; height: 35rem;
+            background: rgba(236,72,153,0.15);
+            top: -10rem; left: -8rem;
+        }
+        .blob-blue {
+            width: 28rem; height: 28rem;
+            background: rgba(59,130,246,0.12);
+            bottom: -8rem; right: -5rem;
+        }
+        .hero-content {
+            position: relative; z-index: 1;
+            max-width: 60rem; margin: 0 auto;
+            animation: slide-up 0.8s ease-out both;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.4rem 1rem; border-radius: 999px;
+            border: 1px solid rgba(236,72,153,0.3);
+            background: rgba(236,72,153,0.08);
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--pink); margin-bottom: 2rem;
+        }
+        .badge-dot {
+            width: 0.4rem; height: 0.4rem; border-radius: 50%;
+            background: var(--pink); animation: pulse 2s ease infinite;
+        }
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5.5rem);
+            font-weight: 800; line-height: 1.05;
+            margin-bottom: 1.5rem; letter-spacing: -0.02em;
+        }
+        .hero p {
+            font-size: 1.125rem; color: var(--muted);
+            max-width: 38rem; margin: 0 auto 3rem; line-height: 1.7;
+        }
+        .hero-cta {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.875rem 2.25rem;
+            background: linear-gradient(135deg, var(--pink), var(--blue));
+            color: white; font-weight: 600; font-size: 0.9rem;
+            border-radius: 0.75rem; border: none;
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+            cursor: pointer; letter-spacing: 0.02em;
+        }
+        .hero-cta:hover {
+            box-shadow: 0 12px 40px rgba(236,72,153,0.45);
+            transform: translateY(-2px);
+        }
+
+        .section-header { text-align: center; padding: 4rem 2rem 2rem; }
+        .section-header h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 800; margin-bottom: 0.75rem; letter-spacing: -0.01em;
+        }
+        .section-header p { color: var(--muted); font-size: 1rem; }
+
+        /* SLIDER */
+        .slider-section {
+            position: relative; width: 99vw; height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; background: var(--dark);
+        }
+        .ambient {
+            position: absolute; inset: 0; pointer-events: none;
+            transition: background 0.8s ease; z-index: 0;
+        }
+        .slider-section::before {
+            content: ''; position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px; z-index: 1; pointer-events: none;
+        }
+        .track { position: relative; z-index: 2; width: 100%; height: 100%; }
+
+        .card {
+            position: absolute; top: 50%; left: 50%;
+            width: 460px; max-width: 88vw;
+            border-radius: 1.75rem; overflow: hidden;
+            background: var(--card-bg); border: 1px solid var(--border);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+            transition: transform 0.7s cubic-bezier(0.77,0,0.18,1), opacity 0.7s cubic-bezier(0.77,0,0.18,1), filter 0.7s ease;
+            will-change: transform, opacity;
+        }
+        .card[data-state="active"]       { transform: translate(-50%,-50%) scale(1); opacity: 1; filter: none; z-index: 10; }
+        .card[data-state="prev"]         { transform: translate(calc(-50% - 510px),-50%) scale(0.8); opacity: 0.3; filter: blur(3px) grayscale(0.5); z-index: 5; }
+        .card[data-state="next"]         { transform: translate(calc(-50% + 510px),-50%) scale(0.8); opacity: 0.3; filter: blur(3px) grayscale(0.5); z-index: 5; }
+        .card[data-state="hidden-left"]  { transform: translate(calc(-50% - 950px),-50%) scale(0.65); opacity: 0; filter: blur(8px); z-index: 1; }
+        .card[data-state="hidden-right"] { transform: translate(calc(-50% + 950px),-50%) scale(0.65); opacity: 0; filter: blur(8px); z-index: 1; }
+
+        .card-img-wrap { position: relative; overflow: hidden; height: 320px; }
+        .card-img { width: 100%; height: 100%; object-fit: contain; display: block; transition: transform 0.6s ease; }
+        .card[data-state="active"] .card-img { transform: scale(1.04); }
+        .card-img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, var(--card-bg) 100%); }
+        .card-body { padding: 1.5rem 2rem 2rem; }
+        .card-tag {
+            display: inline-block; font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase; color: var(--pink);
+            margin-bottom: 0.6rem; opacity: 0; transform: translateY(8px);
+            transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+        }
+        .card-title {
+            font-family: 'Syne', sans-serif; font-size: 1.65rem; font-weight: 800;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(120deg, #fff 0%, var(--pink) 120%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            letter-spacing: -0.01em; opacity: 0; transform: translateY(10px);
+            transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
+        }
+        .card-desc {
+            font-size: 0.875rem; line-height: 1.75; color: var(--muted);
+            margin-bottom: 1.75rem; opacity: 0; transform: translateY(10px);
+            transition: opacity 0.4s ease 0.4s, transform 0.4s ease 0.4s;
+        }
+        .card-btn {
+            position: relative; overflow: hidden; display: inline-block;
+            padding: 0.7rem 1.75rem;
+            background: linear-gradient(135deg, var(--pink), var(--blue));
+            color: white; font-weight: 600; font-size: 0.875rem;
+            border-radius: 0.625rem; letter-spacing: 0.03em;
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+            opacity: 0; transform: translateY(10px);
+        }
+        .card[data-state="active"] .card-tag   { opacity: 1; transform: translateY(0); }
+        .card[data-state="active"] .card-title  { opacity: 1; transform: translateY(0); }
+        .card[data-state="active"] .card-desc   { opacity: 1; transform: translateY(0); }
+        .card[data-state="active"] .card-btn    { opacity: 1; transform: translateY(0); transition: opacity 0.4s ease 0.5s, transform 0.4s ease 0.5s, box-shadow 0.3s ease; }
+        .card-btn:hover { box-shadow: 0 8px 28px rgba(236,72,153,0.5); transform: translateY(-2px); }
+        .card-btn::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.5s ease;
+        }
+        .card-btn:hover::before { left: 100%; }
+
+        .arrow {
+            position: absolute; top: 50%; transform: translateY(-50%); z-index: 30;
+            width: 3.5rem; height: 3.5rem; border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.1);
+            background: rgba(15,15,26,0.8); backdrop-filter: blur(12px);
+            color: white; display: flex; align-items: center; justify-content: center;
+            transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+        }
+        .arrow:hover { background: rgba(236,72,153,0.22); border-color: var(--pink); box-shadow: 0 0 24px rgba(236,72,153,0.4); }
+        .arrow:active { transform: translateY(-50%) scale(0.9); }
+        .arrow-left  { left: 2rem; }
+        .arrow-right { right: 2rem; }
+
+        .slider-dots {
+            position: absolute; bottom: 2.25rem; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 0.5rem; z-index: 30;
+        }
+        .sdot {
+            height: 0.45rem; width: 0.45rem; border-radius: 999px;
+            background: rgba(255,255,255,0.18);
+            transition: width 0.4s ease, background 0.4s ease;
+            cursor: pointer; border: none;
+        }
+        .sdot.active { width: 2rem; background: var(--pink); }
+        .slider-counter {
+            position: absolute; top: 1.75rem; right: 2.5rem; z-index: 30;
+            font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700;
+            color: rgba(255,255,255,0.25); letter-spacing: 0.15em;
+        }
+        .slider-counter span { color: var(--pink); }
+        .slider-hint {
+            position: absolute; bottom: 5rem; left: 50%; transform: translateX(-50%);
+            font-size: 0.65rem; color: rgba(255,255,255,0.18);
+            letter-spacing: 0.12em; z-index: 30; white-space: nowrap;
+        }
+
+        /* CONTACT */
+        .contact-section { position: relative; padding: 6rem 2rem; }
+        .contact-wrap {
+            max-width: 56rem; margin: 0 auto;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 2rem; padding: 3.5rem; position: relative;
+            overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+        .contact-deco { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; }
+        .contact-deco-1 { width: 16rem; height: 16rem; background: rgba(236,72,153,0.12); top: -4rem; right: -4rem; }
+        .contact-deco-2 { width: 14rem; height: 14rem; background: rgba(59,130,246,0.1); bottom: -4rem; left: -4rem; }
+        .contact-header { text-align: center; margin-bottom: 2.5rem; position: relative; z-index: 1; }
+        .contact-header h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800; margin-bottom: 0.5rem;
+        }
+        .contact-header p { color: var(--muted); font-size: 0.95rem; }
+
+        .form-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 1.25rem; position: relative; z-index: 1;
+        }
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-full { grid-column: 1 / -1; }
+        .form-label {
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--pink);
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%; background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 0.75rem;
+            padding: 0.8rem 1.1rem; color: var(--text);
+            font-size: 0.875rem; font-family: 'DM Sans', sans-serif;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.22); }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--pink); background: rgba(236,72,153,0.05);
+            box-shadow: 0 0 0 3px rgba(236,72,153,0.15);
+        }
+        .form-input.input-error { border-color: #ef4444 !important; box-shadow: 0 0 0 3px rgba(239,68,68,0.1) !important; }
+        .form-input.input-ok    { border-color: #10b981 !important; box-shadow: 0 0 0 3px rgba(16,185,129,0.1) !important; }
+        .form-select { appearance: none; cursor: pointer; }
+        .form-select option { background: #13131f; color: var(--text); }
+        .form-textarea { resize: none; }
+
+        /* Phone */
+        .phone-wrap { position: relative; }
+        .phone-counter {
+            position: absolute; right: 0.9rem; top: 50%; transform: translateY(-50%);
+            font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.3);
+            pointer-events: none; transition: color 0.2s; letter-spacing: 0.02em;
+        }
+        .phone-counter.full { color: #10b981; }
+        .phone-hint { font-size: 0.72rem; font-weight: 500; margin-top: 0.28rem; min-height: 1.1em; transition: color 0.2s; }
+        .phone-hint.ok  { color: #10b981; }
+        .phone-hint.err { color: #ef4444; }
+
+        .form-buttons {
+            grid-column: 1 / -1; display: flex;
+            justify-content: center; gap: 1rem; padding-top: 1.5rem; flex-wrap: wrap;
+        }
+        .btn-submit {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--pink), #f43f5e);
+            color: white; font-weight: 600; font-size: 0.875rem;
+            border-radius: 0.75rem; border: none;
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .btn-submit:hover { box-shadow: 0 10px 30px rgba(236,72,153,0.45); transform: translateY(-2px); }
+        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .form-status {
+            grid-column: 1 / -1; text-align: center;
+            font-size: 0.875rem; font-weight: 600;
+            padding: 0.75rem; border-radius: 0.75rem; display: none;
+        }
+        .form-status.success { display: block; background: rgba(22,163,74,0.12); color: #4ade80; border: 1px solid rgba(22,163,74,0.25); }
+        .form-status.error   { display: block; background: rgba(220,38,38,0.12); color: #f87171; border: 1px solid rgba(220,38,38,0.25); }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 1.25rem 1.25rem; }
+            .nav-links { display: none; }
+            .hero { padding: 5rem 1.5rem 3rem; }
+            .card { width: 85vw; }
+            .card[data-state="prev"]         { transform: translate(calc(-50% - 100vw),-50%) scale(0.78); }
+            .card[data-state="next"]         { transform: translate(calc(-50% + 100vw),-50%) scale(0.78); }
+            .card[data-state="hidden-left"]  { transform: translate(calc(-50% - 180vw),-50%) scale(0.6); }
+            .card[data-state="hidden-right"] { transform: translate(calc(-50% + 180vw),-50%) scale(0.6); }
+            .card-img-wrap { height: 200px; }
+            .card-title { font-size: 1.35rem; }
+            .arrow-left  { left: 0.75rem; }
+            .arrow-right { right: 0.75rem; }
+            .arrow { width: 2.75rem; height: 2.75rem; }
+            .contact-wrap { padding: 2.25rem 1.5rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-full { grid-column: 1; }
+            .form-buttons { flex-direction: column; }
+            .btn-submit { width: 100%; justify-content: center; }
+        }
+        @media (max-width: 480px) { .hero h1 { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div id="toast" role="alert" aria-live="polite"></div>
+
+   <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-inner">
+            <div class="nav-brand">
+                <img class="logo" src="images/logo.webp" alt="Robomiracle" id="logoBtn">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li class="dropdown">
+                    <a href="Products.html">
+                        Products
+                        <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                       <a href="products/nila.html">Nila</a>
+                        <a href="products/go2.html">Go2</a>
+                        <a href="products/nova.html">Nova-A1</a>
+                        <a href="products/aurra.html">Aurra</a>
+                        <a href="products/nexus.html">Nexus-A1</a>
+                        <a href="products/dine.html">Dine Bot</a>
+                        <a href="products/robert.html">Robert</a>
+                        <a href="products/g1.html">Unitree G1</a>
+                    </div>
+                </li>
+                <li><a href="rental.html" style="color:#2563eb;font-weight:600;">Rental</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="career.html">Career</a></li>
+                <li><a href="education.html">Education</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Contact</a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU DRAWER -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="About.html">About Us</a></li>
+            <li>
+                <button class="mobile-dropdown-toggle" id="mobileProductsToggle" aria-expanded="false">
+                    Products
+                    <svg class="mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+                <ul class="mobile-submenu" id="mobileProductsSubmenu">
+                   <li><a href="products/nila.html">Nila</a></li>
+                    <li><a href="products/go2.html">Go2</a></li>
+                    <li><a href="products/nova.html">Nova-A1</a></li>
+                    <li><a href="products/aurra.html">Aurra</a></li>
+                    <li><a href="products/nexus.html">Nexus-A1</a></li>
+                    <li><a href="products/dine.html">Dine Bot</a></li>
+                    <li><a href="products/robert.html">Robert</a></li>
+                    <li><a href="products/g1.html">Unitree G1</a></li>
+                </ul>
+            </li>
+            <li><a href="rental.html" style="color:#2563eb;font-weight:600;">Rental</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="career.html">Career</a></li>
+            <li><a href="education.html">Education</a></li>
+        </ul>
+        <a href="#contact" class="mobile-menu-cta">Contact Us</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-blob blob-pink"></div>
+        <div class="hero-blob blob-blue"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <div class="badge-dot"></div>
+                Now Available for Rent
+            </div>
+            <h1>Your <span class="gradient-text">Rental Partner</span><br>for Every Project</h1>
+            <p>Experience the future of robotics. Transform your events with intelligent, interactive beings that captivate every guest.</p>
+            <button class="hero-cta" onclick="document.getElementById('slider').scrollIntoView({behavior:'smooth'})">
+                <i data-lucide="zap" style="width:1rem;height:1rem;"></i>
+                Explore Our Fleet
+            </button>
+        </div>
+    </section>
+
+    <!-- SECTION TITLE -->
+    <div class="section-header">
+        <h2>A <span class="gradient-text">New Era</span> of Intelligent Beings</h2>
+        <p>Scroll down and use the arrows to explore each robot</p>
+    </div>
+
+    <!-- SLIDER -->
+    <section class="slider-section" id="slider">
+        <div class="ambient" id="ambient"></div>
+        <div class="slider-counter" id="sliderCounter"><span>01</span> / 05</div>
+        <div class="track" id="track">
+
+            <div class="card" data-index="0">
+                <div class="card-img-wrap">
+                    <img class="card-img" src="images/rentals/g1.webp" alt="Unitree G1" onerror="this.src='https://placehold.co/460x280/0f0f1a/ec4899?text=Kevin+G1'">
+                    <div class="card-img-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <p class="card-tag">Robot 01 · Humanoid</p>
+                    <h3 class="card-title">Kevin — Unitree G1</h3>
+                    <p class="card-desc">Rent the Unitree G1 to elevate your event with cutting-edge robotics. Smooth bipedal movement and engaging gestures create a premium, futuristic experience.</p>
+                    <a href="./rent/kevin.html" class="card-btn">Rent Now →</a>
+                </div>
+            </div>
+
+            <div class="card" data-index="1">
+                <div class="card-img-wrap">
+                    <img class="card-img" src="images/rentals/nila.webp" alt="Nila Robot" onerror="this.src='https://placehold.co/460x280/0f0f1a/ec4899?text=Nila'">
+                    <div class="card-img-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <p class="card-tag">Robot 02 · Humanoid</p>
+                    <h3 class="card-title">Nila</h3>
+                    <p class="card-desc">Welcomes your guests with elegance, captures their photos, and beautifully narrates the couple's love story during the celebration.</p>
+                    <a href="./rent/nila.html" class="card-btn">Rent Now →</a>
+                </div>
+            </div>
+
+            <div class="card" data-index="2">
+                <div class="card-img-wrap">
+                    <img class="card-img" src="images/rentals/dine.webp" alt="Dine Bot" onerror="this.src='https://placehold.co/460x280/0f0f1a/3b82f6?text=Dine+Bot'">
+                    <div class="card-img-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <p class="card-tag">Robot 03 · Service</p>
+                    <h3 class="card-title">Dine Bot</h3>
+                    <p class="card-desc">Enhances the dining experience by delivering food efficiently and interacting smoothly with guests. Designed for restaurants, weddings, and large-scale events.</p>
+                    <a href="./rent/dine.html" class="card-btn">Rent Now →</a>
+                </div>
+            </div>
+
+            <div class="card" data-index="3">
+                <div class="card-img-wrap">
+                    <img class="card-img" src="images/rentals/go2.webp" alt="Subramani Go2" onerror="this.src='https://placehold.co/460x280/0f0f1a/3b82f6?text=Subramani'">
+                    <div class="card-img-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <p class="card-tag">Robot 04 · Quadruped</p>
+                    <h3 class="card-title">Subramani — Go2</h3>
+                    <p class="card-desc">Advanced robotic dog bringing energy, innovation, and entertainment. Agile movement and smart navigation create a powerful tech attraction for any event.</p>
+                    <a href="./rent/go2.html" class="card-btn">Rent Now →</a>
+                </div>
+            </div>
+
+            <div class="card" data-index="4">
+                <div class="card-img-wrap">
+                    <img class="card-img" src="images/rentals/roberthero.webp" alt="Robert Dancing Robot" onerror="this.src='https://placehold.co/460x280/0f0f1a/ec4899?text=Robert'">
+                    <div class="card-img-overlay"></div>
+                </div>
+                <div class="card-body">
+                    <p class="card-tag">Robot 05 · Entertainment</p>
+                    <h3 class="card-title">Robert — Dancing Robot</h3>
+                    <p class="card-desc">High-energy entertainment robot that electrifies events with dynamic dance performances. Synchronized movements and vibrant presence transform any gathering.</p>
+                    <a href="./rent/robert.html" class="card-btn">Rent Now →</a>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="arrow arrow-left" id="arrowLeft" aria-label="Previous">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="arrow arrow-right" id="arrowRight" aria-label="Next">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+
+        <div class="slider-dots" id="sliderDots"></div>
+        <p class="slider-hint">← → arrow keys · swipe to navigate</p>
+    </section>
+
+    <!-- TRUSTED PARTNERS MARQUEE -->
+    <section class="partners-section">
+        <div class="section-pill pill-blue">
+            <h2><span class="gradient-text">Our Trusted Partners</span></h2>
+        </div>
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <div class="partner-logo"><img src="images/clients/c1.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c2.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c3.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c4.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c5.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c6.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c7.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c8.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c9.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c10.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c11.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c12.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c13.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c14.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c15.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c16.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <!-- Duplicate for seamless loop -->
+                <div class="partner-logo"><img src="images/clients/c1.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c2.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c3.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c4.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c5.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c6.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c7.webp" alt="Partner" onerror="this.style.display='none'"></div>
+                <div class="partner-logo"><img src="images/clients/c8.webp" alt="Partner" onerror="this.style.display='none'"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <div class="contact-wrap">
+            <div class="contact-deco contact-deco-1"></div>
+            <div class="contact-deco contact-deco-2"></div>
+
+            <div class="contact-header">
+                <h2><span class="gradient-text">Ready to Rent?</span></h2>
+                <p>Complete the form below and we'll get back to you within 24 hours</p>
+            </div>
+
+            <form id="inquiryForm" novalidate>
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" id="contactName" class="form-input" placeholder="Your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" id="contactEmail" class="form-input" placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <div class="phone-wrap">
+                            <input type="tel" id="contactPhone" class="form-input"
+                                placeholder="10-digit mobile number"
+                                maxlength="10"
+                                inputmode="numeric"
+                                pattern="[0-9]{10}"
+                                autocomplete="tel"
+                                required>
+                            <span class="phone-counter" id="phoneCounter">0/10</span>
+                        </div>
+                        <p class="phone-hint" id="phoneHint"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Robot of Interest</label>
+                        <select id="contactRobot" class="form-select" required>
+                            <option value="" disabled selected>Select a robot</option>
+                            <option value="Dog Robot Go2 air">Subramani - Go2</option>
+                            <option value="Unitree G1 Humanoid">Kevin - Unitree G1</option>
+                            <option value="Robert The Dancing Robot">Robert - Dancing Robot</option>
+                            <option value="Nila Humanoid Robot">Nila - Humanoid Robot</option>
+                            <option value="Service Dinebot 1">Dine Bot</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-full">
+                        <label class="form-label">Additional Information</label>
+                        <textarea id="contactMessage" class="form-input form-textarea" rows="4" placeholder="Tell us about your event — venue, expected guests, duration..."></textarea>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" id="submitBtn" class="btn-submit">
+                            <i data-lucide="send" style="width:1rem;height:1rem;"></i>
+                            Submit Request
+                        </button>
+                    </div>
+
+                    <p id="formStatusMsg" class="form-status"></p>
+
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- SUPPORTED BY -->
+    <section class="supported-section">
+        <div class="section-pill pill-pink" style="margin-bottom:2rem;">
+            <h2><span class="gradient-text">Supported By</span></h2>
+        </div>
+        <div class="supporters-grid">
+            <div class="supporter-card"><img src="images/Supported/s2.webp" alt="Startup India" onerror="this.src='https://placehold.co/400x200/f8fafc/94a3b8?text=Supporter+1'"></div>
+            <div class="supporter-card"><img src="images/Supported/s3.webp" alt="Startup Singam" onerror="this.src='https://placehold.co/400x200/f8fafc/94a3b8?text=Supporter+2'"></div>
+            <div class="supporter-card"><img src="images/Supported/s1.webp" alt="TN Startup" onerror="this.src='https://placehold.co/400x200/f8fafc/94a3b8?text=Supporter+3'"></div>
+            <div class="supporter-card"><img src="images/Supported/s4.webp" alt="TN Startup" onerror="this.src='https://placehold.co/400x200/f8fafc/94a3b8?text=Supporter+4'"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer" id="contact">
+        <div class="footer-top">
+            <div class="footer-top-inner">
+                <div class="ft-brand">
+                    <img src="images/logo.webp" alt="Robomiracle" class="ft-logo" onerror="this.style.display='none'">
+                    <p class="ft-tagline">Leading the future of robotics and automation through innovation and cutting-edge Indian manufacturing.</p>
+                    <div class="ft-socials">
+                        <a href="https://www.facebook.com/robomiracle.education/" class="ft-social" aria-label="Facebook">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/robomiracle_technologies/?hl=en" class="ft-social" aria-label="Instagram">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/company/robomiracle?originalSubdomain=in" class="ft-social" aria-label="LinkedIn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/results?search_query=robomiracle" class="ft-social" aria-label="YouTube">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#000"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="ft-col">
+                    <h5 class="ft-heading">Products</h5>
+                    <ul class="ft-links">
+                        <li><a href="products/nila.html">Nila</a></li>
+                        <li><a href="products/go2.html">Go2</a></li>
+                        <li><a href="products/aurra.html">Aurra</a></li>
+                        <li><a href="products/nexus.html">Nexus</a></li>
+                        <li><a href="products/dine.html">Dine Bot</a></li>
+                        <li><a href="products/robert.html">Robert</a></li>
+                        <li><a href="products/unitreeg1.html">Unitree G1</a></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h5 class="ft-heading">Company</h5>
+                    <ul class="ft-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="education.html">Education</a></li>
+                        <li><a href="rental.html">Rentals</a></li>
+                        <li><a href="career.html">Career</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                    </ul>
+                    <h5 class="ft-heading" style="margin-top:2rem;">Contact</h5>
+                    <ul class="ft-links">
+                        <li>
+                            <a href="tel:06380473177" class="ft-contact-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                                063804 73177
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:sales@robomiracle.com" class="ft-contact-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                sales@robomiracle.com
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ft-col ft-map-col">
+                    <h5 class="ft-heading">Find Us</h5>
+                    <p class="ft-address">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Tulasi Chambers, R.S. Puram,<br>Coimbatore, Tamil Nadu 641002
+                    </p>
+                    <div class="ft-map-frame">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d860.5326343061993!2d76.94847976009787!3d11.010117031977927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7f9a58ec75ed3%3A0x58a146df0bf77d66!2sROBOMIRACLE!5e1!3m2!1sen!2sin!4v1772782256541!5m2!1sen!2sin"
+                                width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                                title="Robomiracle Location" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-inner">
+                <p>&copy; 2020 Robomiracle Technologies Pvt. Ltd. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Terms &amp; Conditions</a>
+                    <span class="ft-divider">·</span>
+                    <a href="#">Privacy Policy</a>
+                    <span class="ft-divider">·</span>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" aria-label="Scroll to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <script>
+        lucide.createIcons();
+
+        /* ─────────────────────────────────────────────────────────────
+           ★  REPLACE THIS URL with your own Google Apps Script URL
+              (the same one used in your other robot pages, or create
+               a new deployment – see setup guide below the script)
+        ───────────────────────────────────────────────────────────── */
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz2jpThjXWRjjdz8HsSnfuqYFhpYeyPhoVMrD9G73gBGJUsEjG08emXCBfYbmVHNdHL/exec";
+
+        /* ── TOAST ─────────────────────────────────────────────────── */
+        let toastTimer = null;
+        function showToast(msg, type = 'ok', duration = 4500) {
+            const toast = document.getElementById('toast');
+            if (toastTimer) clearTimeout(toastTimer);
+            toast.className = '';
+            toast.textContent = msg;
+            void toast.offsetWidth;
+            toast.classList.add('show', type === 'ok' ? 'toast-ok' : 'toast-err');
+            toastTimer = setTimeout(() => { toast.classList.remove('show'); }, duration);
+        }
+
+        /* ── SLIDER ────────────────────────────────────────────────── */
+        const cards    = Array.from(document.querySelectorAll('.card'));
+        const dotsWrap = document.getElementById('sliderDots');
+        const counter  = document.getElementById('sliderCounter');
+        const ambient  = document.getElementById('ambient');
+        const total    = cards.length;
+        let current    = 0, animating = false;
+
+        const ambients = [
+            'radial-gradient(ellipse 70% 55% at 50% 50%, rgba(236,72,153,0.2) 0%, transparent 70%)',
+            'radial-gradient(ellipse 70% 55% at 50% 50%, rgba(99,102,241,0.18) 0%, transparent 70%)',
+            'radial-gradient(ellipse 70% 55% at 50% 50%, rgba(6,182,212,0.18) 0%, transparent 70%)',
+            'radial-gradient(ellipse 70% 55% at 50% 50%, rgba(59,130,246,0.2) 0%, transparent 70%)',
+            'radial-gradient(ellipse 70% 55% at 50% 50%, rgba(236,72,153,0.2) 0%, transparent 70%)',
+        ];
+
+        cards.forEach((_, i) => {
+            const d = document.createElement('button');
+            d.className = 'sdot' + (i === 0 ? ' active' : '');
+            d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            d.addEventListener('click', () => goTo(i));
+            dotsWrap.appendChild(d);
+        });
+
+        function getState(index, active) {
+            const diff = index - active;
+            if (diff === 0) return 'active';
+            if (diff === -1 || (active === 0 && index === total - 1)) return 'prev';
+            if (diff ===  1 || (active === total - 1 && index === 0))  return 'next';
+            return diff < 0 ? 'hidden-left' : 'hidden-right';
+        }
+
+        function render(active) {
+            cards.forEach((card, i) => { card.dataset.state = getState(i, active); });
+            document.querySelectorAll('.sdot').forEach((d, i) => { d.classList.toggle('active', i === active); });
+            counter.innerHTML = `<span>${String(active+1).padStart(2,'0')}</span> / ${String(total).padStart(2,'0')}`;
+            ambient.style.background = ambients[active] || ambients[0];
+        }
+
+        function goTo(target) {
+            if (animating || target === current) return;
+            animating = true; current = target; render(current);
+            setTimeout(() => { animating = false; }, 720);
+        }
+        const next = () => goTo((current + 1) % total);
+        const prev = () => goTo((current - 1 + total) % total);
+
+        document.getElementById('arrowRight').addEventListener('click', next);
+        document.getElementById('arrowLeft').addEventListener('click', prev);
+        document.addEventListener('keydown', e => { if (e.key === 'ArrowRight') next(); if (e.key === 'ArrowLeft') prev(); });
+
+        let touchX = 0;
+        document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+        document.addEventListener('touchend',   e => {
+            const dx = e.changedTouches[0].clientX - touchX;
+            if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+        });
+        render(0);
+        // Auto-advance every 5 seconds, right → left (next card)
+let autoplayTimer = setInterval(next, 5000);
+
+// Reset timer on manual navigation so it doesn't jump mid-slide
+function resetAutoplay() { clearInterval(autoplayTimer); autoplayTimer = setInterval(next, 3000); }
+document.getElementById('arrowRight').addEventListener('click', resetAutoplay);
+document.getElementById('arrowLeft').addEventListener('click', resetAutoplay);
+document.querySelectorAll('.sdot').forEach(d => d.addEventListener('click', resetAutoplay));
+
+        /* ── PHONE VALIDATION ──────────────────────────────────────── */
+        const phoneInput   = document.getElementById('contactPhone');
+        const phoneCounter = document.getElementById('phoneCounter');
+        const phoneHint    = document.getElementById('phoneHint');
+
+        function updatePhoneUI() {
+            phoneInput.value = phoneInput.value.replace(/[^0-9]/g, '');
+            if (phoneInput.value.length > 10) phoneInput.value = phoneInput.value.slice(0, 10);
+            const len = phoneInput.value.length;
+            phoneCounter.textContent = len + '/10';
+            phoneCounter.className   = 'phone-counter' + (len === 10 ? ' full' : '');
+            phoneInput.classList.remove('input-error', 'input-ok');
+            phoneHint.className = 'phone-hint';
+            if (len === 0) {
+                phoneHint.textContent = '';
+            } else if (len < 10) {
+                phoneInput.classList.add('input-error');
+                phoneHint.classList.add('err');
+                phoneHint.textContent = 'Enter ' + (10 - len) + ' more digit' + (10 - len > 1 ? 's' : '');
+            } else {
+                phoneInput.classList.add('input-ok');
+                phoneHint.classList.add('ok');
+                phoneHint.textContent = '✓ Valid mobile number';
+            }
+        }
+
+        phoneInput.addEventListener('input', updatePhoneUI);
+        phoneInput.addEventListener('keydown', function(e) {
+            const allowed = ['Backspace','Delete','Tab','Escape','Enter','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'];
+            if (allowed.includes(e.key) || e.ctrlKey || e.metaKey) return;
+            if (!/[0-9]/.test(e.key)) e.preventDefault();
+            if (phoneInput.value.length >= 10 && !allowed.includes(e.key)) e.preventDefault();
+        });
+        phoneInput.addEventListener('paste', function(e) {
+            e.preventDefault();
+            const pasted  = (e.clipboardData || window.clipboardData).getData('text');
+            const cleaned = pasted.replace(/[^0-9]/g, '').slice(0, 10);
+            this.value = cleaned;
+            updatePhoneUI();
+        });
+
+        /* ── FORM SUBMIT → GOOGLE APPS SCRIPT ─────────────────────── */
+        document.getElementById('inquiryForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const statusMsg = document.getElementById('formStatusMsg');
+
+            const name    = document.getElementById('contactName').value.trim();
+            const email   = document.getElementById('contactEmail').value.trim();
+            const phone   = phoneInput.value.trim();
+            const robot   = document.getElementById('contactRobot').value;
+            const message = document.getElementById('contactMessage').value.trim();
+
+            // Reset status
+            statusMsg.className   = 'form-status';
+            statusMsg.style.display = 'none';
+            statusMsg.textContent = '';
+
+            // Validate
+            if (!name) { showToast('⚠ Please enter your full name.', 'err'); return; }
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('⚠ Please enter a valid email address.', 'err'); return; }
+            if (phone.length !== 10) {
+                phoneInput.classList.add('input-error');
+                phoneHint.className = 'phone-hint err';
+                phoneHint.textContent = 'Phone number must be exactly 10 digits.';
+                phoneInput.focus();
+                showToast('⚠ Phone number must be exactly 10 digits.', 'err');
+                return;
+            }
+            if (!robot) { showToast('⚠ Please select a robot of interest.', 'err'); return; }
+
+            submitBtn.textContent = 'Sending…';
+            submitBtn.disabled    = true;
+
+            // Build query params (same pattern as Nila page)
+            const params = new URLSearchParams({
+                name,
+                email,
+                phone,
+                robot_name: robot,
+                message,
+                source: 'Rental Page'
+            });
+
+            try {
+                // no-cors GET request — Apps Script logs the data into the Sheet
+                await fetch(APPS_SCRIPT_URL + '?' + params.toString(), {
+                    method: 'GET',
+                    mode: 'no-cors'
+                });
+
+                showToast('✓ Request sent! We will contact you within 24 hours.', 'ok', 6000);
+                statusMsg.textContent = '✓ Your request has been sent successfully. We\'ll be in touch shortly!';
+                statusMsg.className   = 'form-status success';
+
+                // Reset form
+                this.reset();
+                phoneCounter.textContent = '0/10';
+                phoneCounter.className   = 'phone-counter';
+                phoneInput.classList.remove('input-error', 'input-ok');
+                phoneHint.textContent = '';
+                phoneHint.className   = 'phone-hint';
+
+            } catch (err) {
+                showToast('✗ Network error. Please email sales@robomiracle.com', 'err', 7000);
+                statusMsg.textContent = '✗ Network error. Please try again or email us at sales@robomiracle.com';
+                statusMsg.className   = 'form-status error';
+            } finally {
+                submitBtn.innerHTML = '<i data-lucide="send" style="width:1rem;height:1rem;"></i> Submit Request';
+                submitBtn.disabled  = false;
+                lucide.createIcons();
+            }
+        });
+    </script>
+
+</body>
+</html>
