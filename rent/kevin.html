@@ -49,11 +49,11 @@
     {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.robomiracle.com/"},{"@type":"ListItem","position":2,"name":"Robot Rentals","item":"https://www.robomiracle.com/rental.html"},{"@type":"ListItem","position":3,"name":"G1 Humanoid Robot Kevin","item":"https://www.robomiracle.com/products/kevin.html"}]}
     </script>
 
-    <!-- FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
 
+    
     <!-- LUCIDE ICONS CDN -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
@@ -61,34 +61,53 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-        --ink:         #0c4a6e;
-        --ink-2:       #041322;
-        --ink-3:       #0a2744;
-        --mid:         #0284c7;
-        --muted:       #38bdf8;
-        --line:        #bae6fd;
-        --line-2:      #e0f2fe;
-        --bg:          #f0f9ff;
-        --bg-2:        #ffffff;
-        --accent:      #0284c7;
-        --accent-dark: #0369a1;
-        --accent-soft: #e0f2fe;
-        --accent-mid:  #7dd3fc;
-        --gold:        #c9a84c;
-        --gold-soft:   #faf5e8;
-        --green:       #166534;
-        --green-soft:  #dcfce7;
-        --red:         #991b1b;
-        --red-soft:    #fee2e2;
-        --card:        #ffffff;
-        --shadow-xs:   0 1px 3px rgba(12,74,110,0.08);
-        --shadow-sm:   0 2px 8px rgba(12,74,110,0.10), 0 1px 3px rgba(12,74,110,0.06);
-        --shadow-md:   0 6px 24px rgba(12,74,110,0.12), 0 2px 8px rgba(12,74,110,0.07);
-        --shadow-lg:   0 16px 48px rgba(12,74,110,0.14), 0 4px 16px rgba(12,74,110,0.08);
-        --shadow-xl:   0 32px 80px rgba(12,74,110,0.18), 0 8px 24px rgba(12,74,110,0.10);
-        --shadow-accent: 0 8px 32px rgba(2,132,199,0.28);
-        --font-display: 'Fraunces', Georgia, serif;
-        --font-body:    'Outfit', system-ui, sans-serif;
+        /* ── Pink → Purple Brand Palette ── */
+        --pink:         #e91e8c;
+        --pink-dark:    #c4156f;
+        --pink-light:   #f06ab3;
+        --pink-soft:    #fce8f4;
+        --pink-ultra:   #fff0f8;
+
+        --purple:       #6b21cc;
+        --purple-dark:  #5016a8;
+        --purple-light: #9b5de5;
+        --purple-soft:  #ede8ff;
+
+        /* Gradient definitions */
+        --grad-main:    linear-gradient(135deg, #e91e8c 0%, #b021b8 50%, #6b21cc 100%);
+        --grad-btn:     linear-gradient(90deg, #e91e8c 0%, #6b21cc 100%);
+        --grad-light:   linear-gradient(135deg, #fce8f4 0%, #ede8ff 100%);
+        --grad-text:    linear-gradient(90deg, #e91e8c 0%, #6b21cc 100%);
+
+        /* Neutrals */
+        --ink:          #1a0a2e;
+        --ink-2:        #2d1254;
+        --mid:          #6b4fa0;
+        --muted:        #9b85c0;
+        --line:         #e8ddf5;
+        --line-2:       #f4efff;
+        --bg:           #fdfaff;
+        --bg-2:         #ffffff;
+        --card:         #ffffff;
+
+        /* Semantic */
+        --green:        #166534;
+        --green-soft:   #dcfce7;
+        --red:          #991b1b;
+        --red-soft:     #fee2e2;
+
+        /* Shadows */
+        --shadow-xs:    0 1px 3px rgba(105,33,200,0.08);
+        --shadow-sm:    0 2px 8px rgba(105,33,200,0.12), 0 1px 3px rgba(105,33,200,0.06);
+        --shadow-md:    0 6px 24px rgba(105,33,200,0.15), 0 2px 8px rgba(105,33,200,0.08);
+        --shadow-lg:    0 16px 48px rgba(105,33,200,0.18), 0 4px 16px rgba(105,33,200,0.09);
+        --shadow-xl:    0 32px 80px rgba(105,33,200,0.22), 0 8px 24px rgba(105,33,200,0.12);
+        --shadow-glow:  0 8px 32px rgba(233,30,140,0.35);
+        --shadow-glow2: 0 8px 32px rgba(107,33,204,0.35);
+
+        --font-display: 'Syne', system-ui, sans-serif;
+        --font-body:    'DM Sans', system-ui, sans-serif;
+
         --radius-xs:   4px;
         --radius-sm:   8px;
         --radius-md:   12px;
@@ -103,16 +122,12 @@
 
     body::before {
         content: ''; position: fixed; inset: 0;
-        background-image: linear-gradient(rgba(2,132,199,0.04) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(2,132,199,0.04) 1px, transparent 1px);
-        background-size: 48px 48px; pointer-events: none; z-index: 0;
+        background:
+            radial-gradient(ellipse 80% 60% at 10% 0%, rgba(233,30,140,0.07) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 80% at 90% 20%, rgba(107,33,204,0.08) 0%, transparent 60%),
+            radial-gradient(ellipse 50% 50% at 50% 80%, rgba(176,33,180,0.05) 0%, transparent 60%);
+        pointer-events: none; z-index: 0;
     }
-
-    .blob { position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; opacity: 0.5; animation: blobDrift 18s ease-in-out infinite; z-index: 0; }
-    .blob-1 { width: 500px; height: 500px; background: radial-gradient(circle, #bae6fd 0%, transparent 70%); top: -120px; left: -80px; }
-    .blob-2 { width: 400px; height: 400px; background: radial-gradient(circle, #7dd3fc 0%, transparent 70%); top: 30%; right: -100px; animation-delay: 6s; }
-    .blob-3 { width: 350px; height: 350px; background: radial-gradient(circle, #e0f2fe 0%, transparent 70%); bottom: 5%; left: 15%; animation-delay: 12s; }
-    @keyframes blobDrift { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-40px) scale(1.04)} 66%{transform:translate(-20px,25px) scale(0.96)} }
 
     /* TOAST */
     #toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px); z-index: 9999; min-width: 300px; max-width: 90vw; padding: 1rem 1.4rem; border-radius: var(--radius-md); font-size: 0.875rem; font-weight: 600; text-align: center; pointer-events: none; opacity: 0; transition: opacity 0.3s, transform 0.3s; box-shadow: var(--shadow-lg); }
@@ -121,154 +136,145 @@
     #toast.toast-err { background: var(--red-soft); color: var(--red); border: 1px solid #fca5a5; }
 
     /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; background: rgba(240,249,255,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--line); box-shadow: 0 1px 0 rgba(2,132,199,0.06); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--line); }
     .nav-logo img { height: 34px; width: auto; object-fit: contain; display: block; }
+    .nav-logo-text { font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .nav-links { display: flex; align-items: center; gap: 0.25rem; }
-    .nav-links a { font-family: var(--font-body); font-size: 0.82rem; font-weight: 500; color: #38bdf8; text-decoration: none; padding: 0.4rem 0.85rem; border-radius: var(--radius-sm); transition: color 0.2s, background 0.2s; cursor: pointer; white-space: nowrap; }
-    .nav-links a:hover { color: var(--accent); background: var(--accent-soft); }
-    .nav-cta { background: var(--accent) !important; color: #fff !important; font-weight: 600 !important; padding: 0.45rem 1.1rem !important; border-radius: var(--radius-sm) !important; box-shadow: var(--shadow-accent) !important; transition: background 0.2s, transform 0.2s !important; }
-    .nav-cta:hover { background: var(--accent-dark) !important; transform: translateY(-1px); color: #fff !important; }
+    .nav-links a { font-family: var(--font-body); font-size: 0.82rem; font-weight: 500; color: var(--mid); text-decoration: none; padding: 0.4rem 0.85rem; border-radius: var(--radius-sm); transition: color 0.2s, background 0.2s; cursor: pointer; white-space: nowrap; }
+    .nav-links a:hover { color: var(--pink); background: var(--pink-soft); }
+    .nav-cta { background: var(--grad-btn) !important; color: #fff !important; font-weight: 600 !important; padding: 0.45rem 1.2rem !important; border-radius: var(--radius-sm) !important; box-shadow: var(--shadow-glow) !important; transition: opacity 0.2s, transform 0.2s !important; }
+    .nav-cta:hover { opacity: 0.9 !important; transform: translateY(-1px); color: #fff !important; }
 
     /* HAMBURGER */
     .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; background: none; border: none; padding: 8px; z-index: 1100; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: var(--accent); border-radius: 2px; transition: all 0.3s; transform-origin: center; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--pink); border-radius: 2px; transition: all 0.3s; transform-origin: center; }
     .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* MOBILE OVERLAY */
-    .mobile-overlay { display: none; position: fixed; inset: 0; z-index: 998; background: rgba(4,19,34,0.5); backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s; }
+    .mobile-overlay { display: none; position: fixed; inset: 0; z-index: 998; background: rgba(26,10,46,0.5); backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s; }
     .mobile-overlay.open { display: block; opacity: 1; }
 
     /* MOBILE DRAWER */
     .mobile-menu { position: fixed; top: 65px; right: 0; bottom: 0; z-index: 999; width: 280px; max-width: 85vw; background: #fff; border-left: 1px solid var(--line); box-shadow: var(--shadow-xl); transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; overflow-y: auto; padding-top: var(--nav-h); }
     .mobile-menu.open { transform: translateX(0); }
     .mobile-menu-nav { flex: 1; padding: 1rem; display: flex; flex-direction: column; gap: 0.15rem; }
-    .mobile-menu-nav a { display: flex; align-items: center; gap: 0.65rem; font-size: 0.9rem; font-weight: 500; color: #38bdf8; text-decoration: none; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: all 0.2s; cursor: pointer; }
-    .mobile-menu-nav a:hover { color: var(--accent); background: var(--bg); }
+    .mobile-menu-nav a { display: flex; align-items: center; gap: 0.65rem; font-size: 0.9rem; font-weight: 500; color: var(--mid); text-decoration: none; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: all 0.2s; cursor: pointer; }
+    .mobile-menu-nav a:hover { color: var(--pink); background: var(--pink-soft); }
     .mobile-menu-footer { padding: 1rem; border-top: 1px solid var(--line); }
-    .mobile-menu-footer a.btn-primary { margin-top: 600px; display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.85rem 1.5rem; background: var(--accent); color: #fff; font-weight: 600; font-size: 0.875rem; border-radius: var(--radius-md); text-decoration: none; }
+    .mobile-menu-footer a.btn-primary { margin-top: 600px; display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.85rem 1.5rem; background: var(--grad-btn); color: #fff; font-weight: 700; font-size: 0.875rem; border-radius: var(--radius-md); text-decoration: none; box-shadow: var(--shadow-glow); }
 
     /* SCROLL TOP */
-    #scrollTop { position: fixed; bottom: 2rem; right: 2rem; z-index: 990; width: 42px; height: 42px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius-sm); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-accent); opacity: 0; transform: translateY(12px); transition: all 0.3s; pointer-events: none; }
+    #scrollTop { position: fixed; bottom: 2rem; right: 2rem; z-index: 990; width: 44px; height: 44px; background: var(--grad-btn); color: #fff; border: none; border-radius: var(--radius-sm); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-glow); opacity: 0; transform: translateY(12px); transition: all 0.3s; pointer-events: none; }
     #scrollTop.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    #scrollTop:hover { background: var(--accent-dark); transform: translateY(-2px); }
+    #scrollTop:hover { transform: translateY(-2px); }
 
     /* BREADCRUMB */
     .breadcrumb { padding: 0.7rem 2.5rem; background: var(--bg-2); border-bottom: 1px solid var(--line); position: relative; z-index: 1; }
     .breadcrumb-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--muted); flex-wrap: wrap; }
-    .breadcrumb a { color: #38bdf8; text-decoration: none; transition: color 0.2s; }
-    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb a { color: var(--pink); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--purple); }
     .breadcrumb .sep { color: var(--line); }
-    .breadcrumb .current { color: var(--accent); font-weight: 600; }
+    .breadcrumb .current { background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
 
     /* HERO */
-    #home {
-        position: relative;
-        display: flex;
-        align-items: center;
-        padding-top: var(--nav-h);
-        padding-left: 2.5rem;
-        padding-right: 2.5rem;
-        padding-bottom: 0;
-        background: var(--bg-2);
-        overflow: hidden;
-    }
+    #home { position: relative; display: flex; align-items: center; padding-top: var(--nav-h); padding-left: 2.5rem; padding-right: 2.5rem; padding-bottom: 0; background: var(--bg-2); overflow: hidden; }
     .hero-noise { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E"); pointer-events: none; }
-    .hero-grid {
-        max-width: 1280px;
-        margin: 0 auto;
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        gap: 5rem;
-        padding: 2rem 0 3rem;
-        position: relative;
-        z-index: 1;
-    }
-    .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent-soft); color: var(--accent); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.35rem 0.85rem; border-radius: 100px; margin-bottom: 1.4rem; border: 1px solid var(--accent-mid); }
-    .hero-eyebrow .live-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
-    h1.hero-title { font-family: var(--font-display); font-size: clamp(2.4rem, 4.5vw, 4.8rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; color: #0c4a6e; margin-bottom: 1.4rem; }
-    h1.hero-title .serif-italic { font-style: italic; font-weight: 300; background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 50%, #38bdf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero-sub { font-size: 1rem; color: #0369a1; max-width: 480px; line-height: 1.8; margin-bottom: 2rem; font-weight: 400; }
+    .hero-grid { max-width: 1280px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 5rem; padding: 2rem 0 3rem; position: relative; z-index: 1; }
+    .hero-grid::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(233,30,140,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(107,33,204,0.04) 1px, transparent 1px); background-size: 44px 44px; pointer-events: none; }
+
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--grad-light); color: var(--pink); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.38rem 0.9rem; border-radius: 100px; margin-bottom: 1.4rem; border: 1px solid rgba(233,30,140,0.25); }
+    .hero-eyebrow .live-dot { width: 6px; height: 6px; background: var(--pink); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.6)} }
+
+    h1.hero-title { font-family: var(--font-display); font-size: clamp(2.4rem, 4.5vw, 5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 1.4rem; }
+    h1.hero-title .serif-italic { display: block; background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
+
+    .hero-sub { font-size: 1rem; color: var(--mid); max-width: 480px; line-height: 1.8; margin-bottom: 2rem; font-weight: 400; }
     .hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-    .tag { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.28rem 0.75rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; font-size: 0.7rem; font-weight: 500; color: #0369a1; box-shadow: var(--shadow-xs); }
+    .tag { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.8rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; font-size: 0.7rem; font-weight: 500; color: var(--mid); box-shadow: var(--shadow-xs); transition: all 0.2s; }
+    .tag:hover { border-color: var(--pink); color: var(--pink); background: var(--pink-soft); }
     .tag svg { width: 11px; height: 11px; }
+
     .hero-btns { display: flex; gap: 0.85rem; flex-wrap: wrap; }
-    .btn-primary { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.85rem 1.75rem; background: var(--accent); color: #fff; font-family: var(--font-body); font-weight: 600; font-size: 0.875rem; border: none; border-radius: var(--radius-md); cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap; box-shadow: var(--shadow-accent); }
-    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(2,132,199,0.3); }
-    .btn-outline { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.85rem 1.75rem; background: var(--bg-2); color: #0284c7; font-family: var(--font-body); font-weight: 600; font-size: 0.875rem; border: 1.5px solid #7dd3fc; border-radius: var(--radius-md); cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap; box-shadow: var(--shadow-xs); }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); transform: translateY(-1px); }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.88rem 1.8rem; background: var(--grad-btn); color: #fff; font-family: var(--font-body); font-weight: 700; font-size: 0.875rem; border: none; border-radius: var(--radius-md); cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap; box-shadow: var(--shadow-glow); letter-spacing: 0.01em; }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 14px 40px rgba(233,30,140,0.38); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.88rem 1.8rem; background: var(--bg-2); color: var(--purple); font-family: var(--font-body); font-weight: 600; font-size: 0.875rem; border: 1.5px solid rgba(107,33,204,0.35); border-radius: var(--radius-md); cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap; box-shadow: var(--shadow-xs); }
+    .btn-outline:hover { border-color: var(--purple); color: var(--purple); background: var(--purple-soft); transform: translateY(-1px); }
+
     .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
     .hero-img-frame { position: relative; width: 100%; max-width: 440px; }
-    .hero-img-frame::before { content: ''; position: absolute; inset: 12px; background: linear-gradient(135deg, var(--accent-soft) 0%, var(--line-2) 100%); border-radius: var(--radius-xl); z-index: 0; }
+    .hero-img-frame::before { content: ''; position: absolute; inset: 12px; background: var(--grad-light); border-radius: var(--radius-xl); z-index: 0; }
+    .hero-img-frame::after { content: ''; position: absolute; inset: -6px; border-radius: calc(var(--radius-lg) + 6px); background: var(--grad-btn); opacity: 0.15; z-index: 0; filter: blur(12px); }
     .hero-img-frame img { position: relative; z-index: 1; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--radius-lg); display: block; box-shadow: var(--shadow-xl); mask-image: linear-gradient(to bottom, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%); }
-    .hero-stat-badge { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-md); padding: 0.65rem 0.9rem; box-shadow: var(--shadow-md); display: flex; align-items: center; gap: 0.55rem; white-space: nowrap; z-index: 3; animation: float 4s ease-in-out infinite; }
-    .hero-stat-badge .badge-icon { width: 32px; height: 32px; border-radius: var(--radius-sm); background: var(--accent-soft); display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+
+    .hero-stat-badge { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-md); padding: 0.7rem 0.95rem; box-shadow: var(--shadow-md); display: flex; align-items: center; gap: 0.55rem; white-space: nowrap; z-index: 3; animation: float 4s ease-in-out infinite; }
+    .hero-stat-badge .badge-icon { width: 34px; height: 34px; border-radius: var(--radius-sm); background: var(--grad-btn); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; }
     .hero-stat-badge .badge-icon svg { width: 16px; height: 16px; }
-    .badge-val { font-size: 0.82rem; font-weight: 700; color: #0c4a6e; display: block; line-height: 1.2; }
-    .badge-lbl { font-size: 0.67rem; color: #38bdf8; }
+    .badge-val { font-size: 0.82rem; font-weight: 700; color: var(--ink); display: block; line-height: 1.2; }
+    .badge-lbl { font-size: 0.67rem; color: var(--muted); }
     .hero-stat-badge.left  { left: -20px; top: 22%; animation-delay: 0s; }
     .hero-stat-badge.right { right: -20px; top: 58%; animation-delay: 2s; }
     @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
     /* TRUST BAR */
-    #trust-bar { background: var(--ink-2); padding: 1.25rem 2.5rem; }
-    .trust-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
-    .trust-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(56,189,248,0.55); white-space: nowrap; }
+    #trust-bar { background: var(--ink); padding: 1.25rem 2.5rem; position: relative; overflow: hidden; }
+    #trust-bar::before { content: ''; position: absolute; inset: 0; background: var(--grad-main); opacity: 0.08; }
+    .trust-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 2.5rem; flex-wrap: wrap; position: relative; }
+    .trust-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); white-space: nowrap; }
     .trust-items { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; justify-content: center; }
-    .trust-item { font-size: 0.78rem; font-weight: 700; color: rgba(56,189,248,0.8); letter-spacing: 0.04em; }
-    .trust-sep { width: 1px; height: 18px; background: rgba(56,189,248,0.2); }
+    .trust-item { font-family: var(--font-display); font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.75); letter-spacing: 0.05em; }
+    .trust-sep { width: 1px; height: 18px; background: rgba(255,255,255,0.18); }
 
     /* SECTIONS */
     .section { padding: 5.5rem 2.5rem; position: relative; }
     .container { max-width: 1280px; margin: 0 auto; }
     .sec-head { text-align: center; margin-bottom: 3.5rem; }
-    .sec-eye { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; display: block; }
-    .sec-title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.18; color: #0c4a6e; }
-    .sec-title em { font-style: italic; font-weight: 300; color: #0284c7; }
-    .sec-desc { color: #0369a1; margin-top: 0.8rem; font-size: 0.95rem; max-width: 580px; margin-left: auto; margin-right: auto; }
-    .divider { width: 44px; height: 3px; background: linear-gradient(90deg, var(--accent), #38bdf8); border-radius: 2px; margin: 0.85rem auto 0; }
+    .sec-eye { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.6rem; display: inline-block; }
+    .sec-title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; color: var(--ink); }
+    .sec-title em { font-style: normal; background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .sec-desc { color: var(--mid); margin-top: 0.85rem; font-size: 0.95rem; max-width: 580px; margin-left: auto; margin-right: auto; }
+    .divider { width: 44px; height: 3px; background: var(--grad-btn); border-radius: 2px; margin: 0.9rem auto 0; }
 
     /* FEATURES */
     #features-section { background: var(--bg-2); border-top: 1px solid var(--line); }
     .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 1100px; margin: 0 auto; }
     .feature-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 2rem 1.75rem; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; position: relative; overflow: hidden; }
-    .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent-mid); }
-    .feature-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), #38bdf8); opacity: 0; transition: opacity 0.25s; }
-    .feature-card:hover::after { opacity: 1; }
-    .feat-icon { width: 44px; height: 44px; background: var(--accent-soft); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem; color: var(--accent); }
-    .feat-icon svg { width: 20px; height: 20px; }
-    .feat-title { font-size: 0.95rem; font-weight: 700; color: #0c4a6e; margin-bottom: 0.5rem; }
-    .feat-desc { font-size: 0.85rem; color: #0369a1; line-height: 1.75; }
+    .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad-btn); opacity: 0; transition: opacity 0.25s; }
+    .feature-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: rgba(233,30,140,0.25); }
+    .feature-card:hover::before { opacity: 1; }
+    .feat-icon { width: 46px; height: 46px; background: var(--grad-light); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem; }
+    .feat-icon svg { width: 20px; height: 20px; color: var(--pink); }
+    .feat-title { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+    .feat-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.75; }
 
     /* USE CASES */
     #usecases-section { background: var(--bg); border-top: 1px solid var(--line); }
     .usecases-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; max-width: 1100px; margin: 0 auto; }
     .usecase-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 1.5rem 1.25rem; text-align: center; transition: all 0.25s; }
-    .usecase-card:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); transform: translateY(-3px); }
-    .uc-icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--accent) 0%, #38bdf8 100%); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.9rem; color: #fff; }
-    .uc-icon svg { width: 20px; height: 20px; }
-    .uc-name { font-size: 0.875rem; font-weight: 700; color: #0c4a6e; margin-bottom: 0.35rem; }
-    .uc-desc { font-size: 0.775rem; color: #0369a1; line-height: 1.6; }
+    .usecase-card:hover { border-color: var(--pink); box-shadow: var(--shadow-sm); transform: translateY(-4px); }
+    .uc-icon { width: 46px; height: 46px; background: var(--grad-btn); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.9rem; }
+    .uc-icon svg { width: 20px; height: 20px; color: #fff; }
+    .uc-name { font-family: var(--font-display); font-size: 0.875rem; font-weight: 700; color: var(--ink); margin-bottom: 0.35rem; }
+    .uc-desc { font-size: 0.775rem; color: var(--mid); line-height: 1.65; }
 
     /* SEO CONTENT */
     #seo-content { background: var(--bg-2); border-top: 1px solid var(--line); }
     .seo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; max-width: 1100px; margin: 0 auto; align-items: start; }
-    .seo-col h2 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; color: #0c4a6e; line-height: 1.22; margin-bottom: 1rem; letter-spacing: -0.02em; }
-    .seo-col h3 { font-size: 0.875rem; font-weight: 700; color: #0284c7; margin: 1.5rem 0 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 0.5rem; }
-    .seo-col h3 svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; }
-    .seo-col p { font-size: 0.9rem; color: #0369a1; line-height: 1.8; margin-bottom: 0.8rem; }
+    .seo-col h2 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 800; color: var(--ink); line-height: 1.22; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .seo-col h3 { font-size: 0.8rem; font-weight: 700; color: var(--purple); margin: 1.5rem 0 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; gap: 0.5rem; }
+    .seo-col h3 svg { width: 14px; height: 14px; color: var(--pink); flex-shrink: 0; }
+    .seo-col p { font-size: 0.9rem; color: var(--mid); line-height: 1.8; margin-bottom: 0.8rem; }
     .seo-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
-    .seo-list li { font-size: 0.875rem; color: #0369a1; display: flex; align-items: flex-start; gap: 0.55rem; line-height: 1.65; }
-    .seo-list li svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; margin-top: 0.25rem; }
+    .seo-list li { font-size: 0.875rem; color: var(--mid); display: flex; align-items: flex-start; gap: 0.55rem; line-height: 1.65; }
+    .seo-list li svg { width: 14px; height: 14px; color: var(--pink); flex-shrink: 0; margin-top: 0.25rem; }
     .locations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; margin-top: 0.75rem; }
-    .loc-item { display: flex; align-items: center; gap: 0.45rem; font-size: 0.8rem; color: #0369a1; }
-    .loc-item svg { width: 12px; height: 12px; color: var(--accent); flex-shrink: 0; }
+    .loc-item { display: flex; align-items: center; gap: 0.45rem; font-size: 0.8rem; color: var(--mid); }
+    .loc-item svg { width: 12px; height: 12px; color: var(--pink); flex-shrink: 0; }
     .kw-cloud { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.4rem; }
-    .kw-tag { padding: 0.25rem 0.65rem; background: var(--bg); border: 1px solid var(--line); border-radius: 100px; font-size: 0.68rem; color: #0369a1; font-weight: 500; }
+    .kw-tag { padding: 0.25rem 0.7rem; background: var(--bg); border: 1px solid var(--line); border-radius: 100px; font-size: 0.68rem; color: var(--mid); font-weight: 500; transition: all 0.2s; }
+    .kw-tag:hover { border-color: var(--pink); color: var(--pink); background: var(--pink-soft); }
 
     /* GALLERY MARQUEE */
     #gallery-section { background: var(--bg-2); border-top: 1px solid var(--line); overflow: hidden; }
@@ -285,20 +291,20 @@
     .m-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: var(--shadow-lg); }
     .m-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
     .m-card:hover img { transform: scale(1.06); }
-    .m-card-over { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(to top, rgba(4,19,34,0.88) 0%, transparent 100%); transform: translateY(30%); transition: transform 0.3s; }
+    .m-card-over { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(to top, rgba(26,10,46,0.88) 0%, transparent 100%); transform: translateY(30%); transition: transform 0.3s; }
     .m-card:hover .m-card-over { transform: translateY(0); }
-    .m-card-name { font-size: 0.875rem; font-weight: 700; color: #fff; }
+    .m-card-name { font-family: var(--font-display); font-size: 0.875rem; font-weight: 700; color: #fff; }
     .m-card-sub  { font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-top: 1px; }
 
     /* VIDEO */
-    #video-section { background: var(--ink-2); border-top: 1px solid rgba(2,132,199,0.2); }
-    #video-section .sec-eye { color: rgba(56,189,248,0.6); }
-    #video-section .sec-title { color: #bae6fd; }
-    #video-section .sec-desc { color: rgba(56,189,248,0.7); }
-    #video-section .divider { opacity: 0.5; }
-    .video-shell { max-width: 1040px; margin: 0 auto; border-radius: var(--radius-xl); overflow: hidden; aspect-ratio: 16/9; background: #000; box-shadow: var(--shadow-xl); border: 1px solid rgba(255,255,255,0.1); position: relative; }
+    #video-section { background: var(--ink); border-top: 1px solid rgba(233,30,140,0.2); position: relative; overflow: hidden; }
+    #video-section::before { content: ''; position: absolute; inset: 0; background: var(--grad-main); opacity: 0.08; pointer-events: none; }
+    #video-section .sec-eye { color: rgba(255,155,200,0.7); -webkit-text-fill-color: rgba(255,155,200,0.7); }
+    #video-section .sec-title { color: #f3e8ff; }
+    #video-section .sec-desc { color: rgba(200,160,230,0.7); }
+    .video-shell { max-width: 1040px; margin: 0 auto; border-radius: var(--radius-xl); overflow: hidden; aspect-ratio: 16/9; background: #000; box-shadow: var(--shadow-xl); border: 1px solid rgba(255,255,255,0.08); position: relative; }
     .video-shell video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .vc { position: absolute; width: 20px; height: 20px; border-color: rgba(255,255,255,0.3); border-style: solid; }
+    .vc { position: absolute; width: 20px; height: 20px; border-color: rgba(255,255,255,0.25); border-style: solid; }
     .vc-tl { top:10px; left:10px;  border-width:2px 0 0 2px; border-radius:3px 0 0 0; }
     .vc-tr { top:10px; right:10px; border-width:2px 2px 0 0; border-radius:0 3px 0 0; }
     .vc-bl { bottom:10px; left:10px;  border-width:0 0 2px 2px; border-radius:0 0 0 3px; }
@@ -311,78 +317,81 @@
     .robot-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
     .robot-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; display: block; }
     .robot-card:hover img { transform: scale(1.04); }
-    .robot-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(to top, rgba(4,19,34,0.9) 0%, rgba(4,19,34,0.3) 60%, transparent 100%); }
-    .robot-card-name { font-size: 0.85rem; font-weight: 700; color: #fff; }
+    .robot-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(to top, rgba(26,10,46,0.92) 0%, rgba(26,10,46,0.3) 60%, transparent 100%); }
+    .robot-card-name { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: #fff; }
 
     /* FAQ */
     #faq-section { background: var(--bg-2); border-top: 1px solid var(--line); }
     .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; max-width: 1100px; margin: 0 auto; }
     .faq-item { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
-    .faq-item.open { border-color: var(--accent-mid); box-shadow: var(--shadow-sm); background: var(--bg-2); }
-    .faq-q { width: 100%; display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; padding: 1.2rem 1.35rem; background: none; border: none; cursor: pointer; text-align: left; font-size: 0.875rem; font-weight: 600; color: #0c4a6e; transition: color 0.2s; line-height: 1.4; }
-    .faq-item.open .faq-q { color: var(--accent); }
-    .faq-toggle { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--line); border: none; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.3s; cursor: pointer; color: #0284c7; margin-top: 0.1rem; }
+    .faq-item.open { border-color: rgba(233,30,140,0.3); box-shadow: var(--shadow-sm); background: var(--bg-2); }
+    .faq-q { width: 100%; display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; padding: 1.2rem 1.35rem; background: none; border: none; cursor: pointer; text-align: left; font-size: 0.875rem; font-weight: 600; color: var(--ink); transition: color 0.2s; line-height: 1.4; }
+    .faq-item.open .faq-q { color: var(--pink); }
+    .faq-toggle { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--line); border: none; display: flex; align-items: center; justify-content: center; transition: all 0.3s; cursor: pointer; color: var(--mid); margin-top: 0.1rem; }
     .faq-toggle svg { width: 11px; height: 11px; transition: transform 0.3s; }
-    .faq-item.open .faq-toggle { background: var(--accent); color: #fff; }
+    .faq-item.open .faq-toggle { background: var(--grad-btn); color: #fff; }
     .faq-item.open .faq-toggle svg { transform: rotate(45deg); }
     .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.3s; padding: 0 1.35rem; }
     .faq-item.open .faq-a { max-height: 400px; padding: 0 1.35rem 1.2rem; }
-    .faq-a p { font-size: 0.85rem; color: #0369a1; line-height: 1.78; }
+    .faq-a p { font-size: 0.85rem; color: var(--mid); line-height: 1.78; }
 
     /* CONTACT */
     #contact-section { background: var(--bg); border-top: 1px solid var(--line); }
     .contact-wrap { max-width: 680px; margin: 0 auto; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-2xl); padding: 3rem 3.5rem; box-shadow: var(--shadow-lg); }
-    .form-title { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: #0c4a6e; margin-bottom: 0.3rem; }
-    .form-subtitle { font-size: 0.875rem; color: #0369a1; margin-bottom: 2rem; }
+    .form-title { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--ink); margin-bottom: 0.3rem; }
+    .form-title span { background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .form-subtitle { font-size: 0.875rem; color: var(--mid); margin-bottom: 2rem; }
     .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .fg { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
-    .fg-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0369a1; }
-    .fg-input { width: 100%; padding: 0.78rem 0.95rem; background: var(--bg); border: 1.5px solid var(--line); border-radius: var(--radius-sm); color: #0c4a6e; font-family: var(--font-body); font-size: 0.875rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; appearance: none; }
-    .fg-input::placeholder { color: #7dd3fc; }
-    .fg-input:focus { border-color: var(--accent); background: var(--bg-2); box-shadow: 0 0 0 3px rgba(2,132,199,0.10); }
+    .fg-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); }
+    .fg-input { width: 100%; padding: 0.78rem 0.95rem; background: var(--bg); border: 1.5px solid var(--line); border-radius: var(--radius-sm); color: var(--ink); font-family: var(--font-body); font-size: 0.875rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; appearance: none; }
+    .fg-input::placeholder { color: rgba(155,133,192,0.5); }
+    .fg-input:focus { border-color: var(--pink); background: var(--bg-2); box-shadow: 0 0 0 3px rgba(233,30,140,0.1); }
     .fg-input.input-error { border-color: var(--red) !important; box-shadow: 0 0 0 3px rgba(153,27,27,0.08) !important; }
     .fg-input.input-ok { border-color: var(--green) !important; box-shadow: 0 0 0 3px rgba(22,101,52,0.08) !important; }
-    select.fg-input { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230369a1' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19 9-7 7-7-7'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.85rem center; background-size: 0.9rem; padding-right: 2.4rem; cursor: pointer; }
+    select.fg-input { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b4fa0' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19 9-7 7-7-7'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.85rem center; background-size: 0.9rem; padding-right: 2.4rem; cursor: pointer; }
     textarea.fg-input { resize: none; }
     .phone-wrap { position: relative; }
     .phone-wrap .fg-input { padding-right: 3.4rem; }
-    .phone-counter { position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); font-size: 0.68rem; font-weight: 700; color: #38bdf8; pointer-events: none; }
+    .phone-counter { position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); font-size: 0.68rem; font-weight: 700; color: var(--muted); pointer-events: none; }
     .phone-counter.full { color: var(--green); }
     .phone-hint { font-size: 0.7rem; font-weight: 500; margin-top: 0.25rem; min-height: 1em; }
     .phone-hint.ok  { color: var(--green); }
     .phone-hint.err { color: var(--red); }
-    .form-submit { width: 100%; padding: 0.95rem; margin-top: 0.25rem; background: var(--accent); color: #fff; font-family: var(--font-body); font-weight: 700; font-size: 0.875rem; letter-spacing: 0.04em; border: none; border-radius: var(--radius-md); cursor: pointer; box-shadow: var(--shadow-accent); transition: all 0.2s; }
-    .form-submit:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 10px 36px rgba(2,132,199,0.3); }
+    .form-submit { width: 100%; padding: 0.95rem; margin-top: 0.25rem; background: var(--grad-btn); color: #fff; font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.04em; border: none; border-radius: var(--radius-md); cursor: pointer; box-shadow: var(--shadow-glow); transition: all 0.2s; }
+    .form-submit:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(233,30,140,0.38); }
     .form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
     .form-status { text-align: center; font-size: 0.84rem; font-weight: 600; margin-top: 1rem; display: none; padding: 0.8rem 1rem; border-radius: var(--radius-sm); }
     .form-status.ok  { color: var(--green); background: var(--green-soft); border: 1px solid #86efac; display: block; }
     .form-status.err { color: var(--red); background: var(--red-soft); border: 1px solid #fca5a5; display: block; }
 
     /* FOOTER */
-    footer { background: var(--ink-2); color: #fff; padding: 4.5rem 2.5rem 0; }
+    footer { background: var(--ink); color: #fff; padding: 4.5rem 2.5rem 0; position: relative; overflow: hidden; }
+    footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad-btn); }
     .footer-main { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 3rem; padding-bottom: 3.5rem; }
     .footer-brand-logo { height: 32px; width: auto; margin-bottom: 1.1rem; filter: brightness(0) invert(1); display: block; }
-    .footer-brand-desc { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.75; max-width: 260px; }
+    .footer-brand-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; background: var(--grad-btn); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; display: block; }
+    .footer-brand-desc { font-size: 0.82rem; color: rgba(255,255,255,0.42); line-height: 1.75; max-width: 260px; }
     .footer-socials { display: flex; gap: 0.5rem; margin-top: 1.25rem; }
-    .fsoc { width: 32px; height: 32px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); text-decoration: none; transition: all 0.2s; }
-    .fsoc:hover { background: rgba(255,255,255,0.15); color: #fff; }
+    .fsoc { width: 32px; height: 32px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.45); text-decoration: none; transition: all 0.2s; }
+    .fsoc:hover { background: var(--grad-btn); color: #fff; border-color: transparent; }
     .fsoc svg { width: 13px; height: 13px; }
-    .fcol-title { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1.1rem; }
+    .fcol-title { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 1.1rem; }
     .flinks { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-    .flink { font-size: 0.84rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
-    .flink:hover { color: #fff; }
+    .flink { font-size: 0.84rem; color: rgba(255,255,255,0.52); text-decoration: none; transition: color 0.2s; }
+    .flink:hover { color: var(--pink-light); }
     .footer-contact-list { display: flex; flex-direction: column; gap: 0.55rem; }
-    .footer-contact-list a { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+    .footer-contact-list a { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: rgba(255,255,255,0.52); text-decoration: none; transition: color 0.2s; }
     .footer-contact-list a:hover { color: #fff; }
-    .footer-contact-list svg { width: 13px; height: 13px; flex-shrink: 0; color: rgba(255,255,255,0.3); }
-    .footer-contact-addr { font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.6; margin-bottom: 0.85rem; }
-    .footer-hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 0 -2.5rem; }
+    .footer-contact-list svg { width: 13px; height: 13px; flex-shrink: 0; color: rgba(255,255,255,0.28); }
+    .footer-contact-addr { font-size: 0.8rem; color: rgba(255,255,255,0.32); line-height: 1.6; margin-bottom: 0.85rem; }
+    .footer-hr { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 0 -2.5rem; }
     .footer-bottom { padding: 1.4rem 0 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem; }
-    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
-    .footer-links-row { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
-    .footer-links-row a { color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.28); }
+    .footer-links-row { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: rgba(255,255,255,0.28); }
+    .footer-links-row a { color: rgba(255,255,255,0.28); text-decoration: none; transition: color 0.2s; }
     .footer-links-row a:hover { color: rgba(255,255,255,0.7); }
-    .footer-links-row .sep { color: rgba(255,255,255,0.15); }
+    .footer-links-row .sep { color: rgba(255,255,255,0.14); }
 
     /* REVEAL */
     .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -442,9 +451,6 @@
 </head>
 <body>
 
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-<div class="blob blob-3"></div>
 <div id="toast" role="alert" aria-live="polite"></div>
 
 <button id="scrollTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
@@ -455,7 +461,8 @@
 <nav>
     <div class="nav-logo">
         <a href="../index.html" aria-label="Robomiracle Home">
-            <img src="../images/logo.webp" onerror="this.src='https://placehold.co/160x34/f0f9ff/0284c7?text=ROBOMIRACLE'" alt="Robomiracle Technologies" width="160" height="34">
+            <img src="../images/logo.webp" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" alt="Robomiracle Technologies" width="160" height="34">
+            <span class="nav-logo-text" style="display:none">ROBOMIRACLE</span>
         </a>
     </div>
     <div class="nav-links">
@@ -512,11 +519,11 @@
             <h1 class="hero-title">G1 Humanoid<br><span class="serif-italic">Intelligence &amp;<br>Motion Mastery</span></h1>
             <p class="hero-sub">India's most advanced full humanoid robot — Kevin. Articulated full-body motion, real-time AI interaction, and autonomous navigation, engineered for research, events, and enterprise.</p>
             <div class="hero-tags">
-                <span class="tag"><i data-lucide="person-standing" style="width:11px;height:11px;"></i> Full Humanoid</span>
-                <span class="tag"><i data-lucide="brain" style="width:11px;height:11px;"></i> AI Interaction</span>
-                <span class="tag"><i data-lucide="navigation" style="width:11px;height:11px;"></i> Autonomous Nav</span>
-                <span class="tag"><i data-lucide="eye" style="width:11px;height:11px;"></i> Object Detection</span>
-                <span class="tag"><i data-lucide="map-pin" style="width:11px;height:11px;"></i> Pan-India</span>
+                <span class="tag"><i data-lucide="person-standing" style="width:11px;height:11px;color:var(--pink)"></i> Full Humanoid</span>
+                <span class="tag"><i data-lucide="brain" style="width:11px;height:11px;color:var(--pink)"></i> AI Interaction</span>
+                <span class="tag"><i data-lucide="navigation" style="width:11px;height:11px;color:var(--pink)"></i> Autonomous Nav</span>
+                <span class="tag"><i data-lucide="eye" style="width:11px;height:11px;color:var(--pink)"></i> Object Detection</span>
+                <span class="tag"><i data-lucide="map-pin" style="width:11px;height:11px;color:var(--pink)"></i> Pan-India</span>
             </div>
             <div class="hero-btns">
                 <a class="btn-primary" onclick="scrollToSection('contact-section')">Rent Now &rarr;</a>
@@ -526,7 +533,7 @@
         <div class="hero-visual reveal" style="transition-delay:0.15s">
             <div class="hero-img-frame">
                 <img src="../images/products/g1/hero.webp"
-                     onerror="this.src='https://placehold.co/440x586/e0f2fe/0284c7?text=G1+Humanoid+Kevin'"
+                     onerror="this.src='https://placehold.co/440x586/fce8f4/1a0a2e?text=G1+Humanoid+Kevin'"
                      alt="Robomiracle G1 Humanoid Robot Kevin – India's most advanced full-body humanoid robot available for rent"
                      width="440" height="586" loading="eager">
                 <div class="hero-stat-badge left">
@@ -747,47 +754,47 @@
     </div>
     <div class="marquee-wrap">
         <div class="marquee-track">
-            <a href="dine.html" class="m-card"><img src="../images/products/dine/p6.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Dinebot'" alt="Service Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Hospitality Robot</div></div></a>
-            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/dogcard.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Go2+Air'" alt="Dog Robot Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Dog Robot Go2 Air</div><div class="m-card-sub">Quadruped Explorer</div></div></a>
-            <a href="kevin.html" class="m-card"><img src="../images/products/g1/p7.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=G1'" alt="G1 Humanoid Robot Kevin" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1 Humanoid – Kevin</div><div class="m-card-sub">Full Humanoid Robot</div></div></a>
-            <a href="robert.html" class="m-card"><img src="../images/products/robert/rhero.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Robert'" alt="Robert Dancing Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert</div><div class="m-card-sub">Dancing Robot</div></div></a>
-            <a href="dine.html" class="m-card"><img src="../images/products/dine/p7.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Dinebot'" alt="Dinebot tray delivery" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Hospitality Robot</div></div></a>
-            <a href="nila.html" class="m-card"><img src="../images/products/nila/p3.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Wedding / Reception</div></div></a>
-            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/shero.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Go2+Air'" alt="Go2 Air robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Dog Robot Go2 Air</div><div class="m-card-sub">Quadruped Explorer</div></div></a>
-            <a href="kevin.html" class="m-card"><img src="../images/products/g1/hero.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=G1'" alt="G1 Humanoid Kevin" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1 Humanoid – Kevin</div><div class="m-card-sub">Full Humanoid Robot</div></div></a>
-            <a href="robert.html" class="m-card"><img src="../images/products/robert/hero.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Robert'" alt="Robert Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert</div><div class="m-card-sub">Dancing Robot</div></div></a>
-            <a href="nila.html" class="m-card"><img src="../images/products/nila/p1.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Corporate Events</div></div></a>
+            <a href="dine.html" class="m-card"><img src="../images/products/dine/p6.webp" onerror="this.src='https://placehold.co/240x310/fce8f4/1a0a2e?text=Dinebot'" alt="Service Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Hospitality Robot</div></div></a>
+            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/dogcard.webp" onerror="this.src='https://placehold.co/240x310/ede8ff/1a0a2e?text=Go2+Air'" alt="Dog Robot Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Dog Robot Go2 Air</div><div class="m-card-sub">Quadruped Explorer</div></div></a>
+            <a href="kevin.html" class="m-card"><img src="../images/products/g1/p7.webp" onerror="this.src='https://placehold.co/240x310/fce8f4/1a0a2e?text=G1'" alt="G1 Humanoid Robot Kevin" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1 Humanoid – Kevin</div><div class="m-card-sub">Full Humanoid Robot</div></div></a>
+            <a href="robert.html" class="m-card"><img src="../images/products/robert/rhero.webp" onerror="this.src='https://placehold.co/240x310/ede8ff/1a0a2e?text=Robert'" alt="Robert Dancing Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert</div><div class="m-card-sub">Dancing Robot</div></div></a>
+            <a href="dine.html" class="m-card"><img src="../images/products/dine/p7.webp" onerror="this.src='https://placehold.co/240x310/fce8f4/1a0a2e?text=Dinebot'" alt="Dinebot tray delivery" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Hospitality Robot</div></div></a>
+            <a href="nila.html" class="m-card"><img src="../images/products/nila/p3.webp" onerror="this.src='https://placehold.co/240x310/ede8ff/1a0a2e?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Wedding / Reception</div></div></a>
+            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/shero.webp" onerror="this.src='https://placehold.co/240x310/fce8f4/1a0a2e?text=Go2+Air'" alt="Go2 Air robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Dog Robot Go2 Air</div><div class="m-card-sub">Quadruped Explorer</div></div></a>
+            <a href="kevin.html" class="m-card"><img src="../images/products/g1/hero.webp" onerror="this.src='https://placehold.co/240x310/ede8ff/1a0a2e?text=G1'" alt="G1 Humanoid Kevin" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1 Humanoid – Kevin</div><div class="m-card-sub">Full Humanoid Robot</div></div></a>
+            <a href="robert.html" class="m-card"><img src="../images/products/robert/hero.webp" onerror="this.src='https://placehold.co/240x310/fce8f4/1a0a2e?text=Robert'" alt="Robert Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert</div><div class="m-card-sub">Dancing Robot</div></div></a>
+            <a href="nila.html" class="m-card"><img src="../images/products/nila/p1.webp" onerror="this.src='https://placehold.co/240x310/ede8ff/1a0a2e?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Corporate Events</div></div></a>
         </div>
     </div>
     <div class="marquee-wrap" style="margin-top:1rem;">
         <div class="marquee-track rev">
-            <a href="nila.html" class="m-card"><img src="../images/products/nila/p1.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Corporate Events</div></div></a>
-            <a href="robert.html" class="m-card"><img src="../images/products/robert/rhero.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Robert'" alt="Robert Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert</div><div class="m-card-sub">Dancer</div></div></a>
-            <a href="kevin.html" class="m-card"><img src="../images/products/g1/p7.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=G1'" alt="G1 Humanoid Kevin" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1 – Kevin</div><div class="m-card-sub">Intelligent Humanoid</div></div></a>
-            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/dogcard.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Go2+Air'" alt="Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Go2 Air</div><div class="m-card-sub">Agile Quadruped</div></div></a>
-            <a href="dine.html" class="m-card"><img src="../images/products/dine/p6.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Dinebot'" alt="Service Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Restaurant &amp; Events</div></div></a>
-            <a href="robert.html" class="m-card"><img src="../images/products/robert/hero.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Robert'" alt="Robert dancer" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert</div><div class="m-card-sub">Dancer</div></div></a>
-            <a href="kevin.html" class="m-card"><img src="../images/products/g1/hero.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=G1'" alt="G1 Humanoid" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1 – Kevin</div><div class="m-card-sub">Intelligent Humanoid</div></div></a>
-            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/shero.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Go2+Air'" alt="Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Go2 Air</div><div class="m-card-sub">Agile Quadruped</div></div></a>
-            <a href="dine.html" class="m-card"><img src="../images/products/dine/p7.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Dinebot'" alt="Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Restaurant &amp; Events</div></div></a>
-            <a href="nila.html" class="m-card"><img src="../images/products/nila/p3.webp" onerror="this.src='https://placehold.co/240x310/e0f2fe/0284c7?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Wedding / Reception</div></div></a>
+            <a href="nila.html" class="m-card"><img src="../images/products/nila/p1.webp" onerror="this.src='https://placehold.co/240x310/fce8f4/1a0a2e?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Corporate Events</div></div></a>
+            <a href="robert.html" class="m-card"><img src="../images/products/robert/rhero.webp" onerror="this.src='https://placehold.co/240x310/ede8ff/1a0a2e?text=Robert'" alt="Robert Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert</div><div class="m-card-sub">Dancer</div></div></a>
+            <a href="kevin.html" class="m-card"><img src="../images/products/g1/p7.webp" onerror="this.src='https://placehold.co/240x310/fce8f4/1a0a2e?text=G1'" alt="G1 Humanoid Kevin" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1 – Kevin</div><div class="m-card-sub">Intelligent Humanoid</div></div></a>
+            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/dogcard.webp" onerror="this.src='https://placehold.co/240x310/ede8ff/1a0a2e?text=Go2+Air'" alt="Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Go2 Air</div><div class="m-card-sub">Agile Quadruped</div></div></a>
+            <a href="dine.html" class="m-card"><img src="../images/products/dine/p6.webp" onerror="this.src='https://placehold.co/240x310/fce8f4/1a0a2e?text=Dinebot'" alt="Service Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Restaurant &amp; Events</div></div></a>
+            <a href="robert.html" class="m-card"><img src="../images/products/robert/hero.webp" onerror="this.src='https://placehold.co/240x310/ede8ff/1a0a2e?text=Robert'" alt="Robert dancer" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert</div><div class="m-card-sub">Dancer</div></div></a>
+            <a href="kevin.html" class="m-card"><img src="../images/products/g1/hero.webp" onerror="this.src='https://placehold.co/240x310/fce8f4/1a0a2e?text=G1'" alt="G1 Humanoid" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1 – Kevin</div><div class="m-card-sub">Intelligent Humanoid</div></div></a>
+            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/shero.webp" onerror="this.src='https://placehold.co/240x310/ede8ff/1a0a2e?text=Go2+Air'" alt="Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Go2 Air</div><div class="m-card-sub">Agile Quadruped</div></div></a>
+            <a href="dine.html" class="m-card"><img src="../images/products/dine/p7.webp" onerror="this.src='https://placehold.co/240x310/fce8f4/1a0a2e?text=Dinebot'" alt="Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Restaurant &amp; Events</div></div></a>
+            <a href="nila.html" class="m-card"><img src="../images/products/nila/p3.webp" onerror="this.src='https://placehold.co/240x310/ede8ff/1a0a2e?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Wedding / Reception</div></div></a>
         </div>
     </div>
 </section>
 
 <!-- VIDEO -->
 <section id="video-section" class="section" aria-label="G1 Humanoid Kevin demo video">
-    <div class="container">
+    <div class="container" style="position:relative;z-index:1;">
         <div class="sec-head reveal">
             <span class="sec-eye">In Action</span>
-            <h2 class="sec-title">Watch Kevin <em>Live in Action</em></h2>
+            <h2 class="sec-title">Watch Kevin <em style="-webkit-text-fill-color:unset;background:unset;color:var(--pink-light)">Live in Action</em></h2>
             <div class="divider"></div>
-            <p class="sec-desc" style="color:rgba(56,189,248,0.7);">See how India's most advanced humanoid robot walks, talks, and interacts at real events</p>
+            <p class="sec-desc" style="color:rgba(200,160,230,0.7);">See how India's most advanced humanoid robot walks, talks, and interacts at real events</p>
         </div>
         <div class="reveal" style="transition-delay:0.1s">
             <div class="video-shell">
                 <video autoplay loop muted playsinline
-                       poster="https://placehold.co/1920x1080/041322/0ea5e9?text=G1+Humanoid+Kevin+In+Action"
+                       poster="https://placehold.co/1920x1080/1a0a2e/e91e8c?text=G1+Humanoid+Kevin+In+Action"
                        aria-label="Robomiracle G1 Humanoid Robot Kevin live demonstration">
                     <source src="../images/products/g1/G1 Interaction.mp4" type="video/mp4">
                     Your browser does not support HTML5 video.
@@ -809,14 +816,14 @@
             <p class="sec-desc">See the G1 Humanoid Robot deployed across corporate events, exhibitions, universities, and enterprise environments across India</p>
         </div>
         <div class="robots-grid">
-            <div class="robot-card reveal" style="transition-delay:0s"><img src="../images/products/g1/p8.webp" onerror="this.src='https://placehold.co/300x400/e0f2fe/0284c7?text=G1+Kevin'" alt="G1 Humanoid Kevin corporate event" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Corporate Event</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.05s"><img src="../images/products/g1/p5.webp" onerror="this.src='https://placehold.co/300x400/e0f2fe/0284c7?text=G1+Kevin'" alt="G1 Humanoid Kevin exhibition" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Exhibition</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.10s"><img src="../images/products/g1/p2.webp" onerror="this.src='https://placehold.co/300x400/e0f2fe/0284c7?text=G1+Kevin'" alt="G1 Humanoid Kevin AI interaction" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">AI Interaction</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.15s"><img src="../images/products/g1/p6.webp" onerror="this.src='https://placehold.co/300x400/e0f2fe/0284c7?text=G1+Kevin'" alt="G1 Humanoid Kevin full body" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Full-Body View</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.20s"><img src="../images/products/g1/p3.webp" onerror="this.src='https://placehold.co/300x400/e0f2fe/0284c7?text=G1+Kevin'" alt="G1 Humanoid Kevin autonomous navigation" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Autonomous Nav</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.25s"><img src="../images/products/g1/p7.webp" onerror="this.src='https://placehold.co/300x400/e0f2fe/0284c7?text=G1+Kevin'" alt="G1 Humanoid Kevin product launch" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Product Launch</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.30s"><img src="../images/products/g1/p4.webp" onerror="this.src='https://placehold.co/300x400/e0f2fe/0284c7?text=G1+Kevin'" alt="G1 Humanoid Kevin university event" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">University Event</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.35s"><img src="../images/products/g1/p1.webp" onerror="this.src='https://placehold.co/300x400/e0f2fe/0284c7?text=G1+Kevin'" alt="G1 Humanoid Kevin stage presentation" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Stage Presentation</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0s"><img src="../images/products/g1/p8.webp" onerror="this.src='https://placehold.co/300x400/fce8f4/1a0a2e?text=G1+Kevin'" alt="G1 Humanoid Kevin corporate event" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Corporate Event</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.05s"><img src="../images/products/g1/p5.webp" onerror="this.src='https://placehold.co/300x400/ede8ff/1a0a2e?text=G1+Kevin'" alt="G1 Humanoid Kevin exhibition" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Exhibition</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.10s"><img src="../images/products/g1/p2.webp" onerror="this.src='https://placehold.co/300x400/fce8f4/1a0a2e?text=G1+Kevin'" alt="G1 Humanoid Kevin AI interaction" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">AI Interaction</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.15s"><img src="../images/products/g1/p6.webp" onerror="this.src='https://placehold.co/300x400/ede8ff/1a0a2e?text=G1+Kevin'" alt="G1 Humanoid Kevin full body" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Full-Body View</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.20s"><img src="../images/products/g1/p3.webp" onerror="this.src='https://placehold.co/300x400/fce8f4/1a0a2e?text=G1+Kevin'" alt="G1 Humanoid Kevin autonomous navigation" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Autonomous Nav</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.25s"><img src="../images/products/g1/p7.webp" onerror="this.src='https://placehold.co/300x400/ede8ff/1a0a2e?text=G1+Kevin'" alt="G1 Humanoid Kevin product launch" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Product Launch</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.30s"><img src="../images/products/g1/p4.webp" onerror="this.src='https://placehold.co/300x400/fce8f4/1a0a2e?text=G1+Kevin'" alt="G1 Humanoid Kevin university event" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">University Event</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.35s"><img src="../images/products/g1/p1.webp" onerror="this.src='https://placehold.co/300x400/ede8ff/1a0a2e?text=G1+Kevin'" alt="G1 Humanoid Kevin stage presentation" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Stage Presentation</div></div></div>
         </div>
     </div>
 </section>
@@ -833,103 +840,53 @@
         <div class="faq-grid reveal">
 
             <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <button class="faq-q" aria-expanded="false" itemprop="name">
-                    What is the Robomiracle G1 Humanoid Robot Kevin?
-                    <div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div>
-                </button>
-                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">The Robomiracle G1 Humanoid Robot, known as Kevin, is India's most advanced full-body humanoid robot. It features 43 degrees of freedom for human-like articulation, real-time AI conversation in English, Tamil, and Hindi, autonomous LIDAR navigation, and live object detection. Kevin is available for rent and purchase across India for corporate events, research, exhibitions, and enterprise deployments.</p>
-                </div>
+                <button class="faq-q" aria-expanded="false" itemprop="name">What is the Robomiracle G1 Humanoid Robot Kevin?<div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div></button>
+                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">The Robomiracle G1 Humanoid Robot, known as Kevin, is India's most advanced full-body humanoid robot. It features 43 degrees of freedom for human-like articulation, real-time AI conversation in English, Tamil, and Hindi, autonomous LIDAR navigation, and live object detection. Kevin is available for rent and purchase across India for corporate events, research, exhibitions, and enterprise deployments.</p></div>
             </div>
 
             <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <button class="faq-q" aria-expanded="false" itemprop="name">
-                    Where can I rent a humanoid robot in India?
-                    <div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div>
-                </button>
-                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Robomiracle Technologies, headquartered in Coimbatore, Tamil Nadu, offers humanoid robot rental across India including Chennai, Bangalore, Hyderabad, Mumbai, and Delhi. Contact sales@robomiracle.com or call +91 63804 73177 for pricing and availability. Every rental includes robot transport, setup, and on-site operator support.</p>
-                </div>
+                <button class="faq-q" aria-expanded="false" itemprop="name">Where can I rent a humanoid robot in India?<div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div></button>
+                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Robomiracle Technologies, headquartered in Coimbatore, Tamil Nadu, offers humanoid robot rental across India including Chennai, Bangalore, Hyderabad, Mumbai, and Delhi. Contact sales@robomiracle.com or call +91 63804 73177 for pricing and availability. Every rental includes robot transport, setup, and on-site operator support.</p></div>
             </div>
 
             <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <button class="faq-q" aria-expanded="false" itemprop="name">
-                    How much does it cost to rent the G1 Humanoid Robot in India?
-                    <div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div>
-                </button>
-                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Robomiracle offers flexible rental plans — from single-day corporate event rentals to monthly and annual RaaS subscriptions. Pricing depends on rental duration, location, customization requirements, and deployment type. Contact Robomiracle at sales@robomiracle.com or call +91 63804 73177 for a customized quote for your event or institution.</p>
-                </div>
+                <button class="faq-q" aria-expanded="false" itemprop="name">How much does it cost to rent the G1 Humanoid Robot in India?<div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div></button>
+                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Robomiracle offers flexible rental plans — from single-day corporate event rentals to monthly and annual RaaS subscriptions. Pricing depends on rental duration, location, customization requirements, and deployment type. Contact Robomiracle at sales@robomiracle.com or call +91 63804 73177 for a customized quote for your event or institution.</p></div>
             </div>
 
             <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <button class="faq-q" aria-expanded="false" itemprop="name">
-                    What events is the G1 Humanoid Robot Kevin suitable for?
-                    <div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div>
-                </button>
-                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Kevin is ideal for corporate events, product launches, trade exhibitions, tech expos, research institutions, university science fests, government innovation showcases, hotel and hospitality deployments, media and entertainment productions, and large-scale public events across India. It is especially impactful at events where audience engagement and media attention are priorities.</p>
-                </div>
+                <button class="faq-q" aria-expanded="false" itemprop="name">What events is the G1 Humanoid Robot Kevin suitable for?<div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div></button>
+                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Kevin is ideal for corporate events, product launches, trade exhibitions, tech expos, research institutions, university science fests, government innovation showcases, hotel and hospitality deployments, media and entertainment productions, and large-scale public events across India. It is especially impactful at events where audience engagement and media attention are priorities.</p></div>
             </div>
 
             <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <button class="faq-q" aria-expanded="false" itemprop="name">
-                    Can Kevin interact with people in real time?
-                    <div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div>
-                </button>
-                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Yes. Kevin uses advanced AI language models for real-time natural conversation. It can greet guests, answer questions live, deliver scripted brand presentations, and respond dynamically to audience inputs in English, Tamil, and Hindi. Every interaction is fully customizable for your event or enterprise requirement.</p>
-                </div>
+                <button class="faq-q" aria-expanded="false" itemprop="name">Can Kevin interact with people in real time?<div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div></button>
+                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Yes. Kevin uses advanced AI language models for real-time natural conversation. It can greet guests, answer questions live, deliver scripted brand presentations, and respond dynamically to audience inputs in English, Tamil, and Hindi. Every interaction is fully customizable for your event or enterprise requirement.</p></div>
             </div>
 
             <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <button class="faq-q" aria-expanded="false" itemprop="name">
-                    Can Robomiracle customize Kevin for my brand or event?
-                    <div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div>
-                </button>
-                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Yes. Robomiracle's engineering team programs Kevin with fully custom interaction scripts, branded presentations, multilingual greetings, and specialized event routines. Custom chest display content, visual branding, and event-specific behaviors can all be configured. Customization is available for both purchased robots and long-term rental clients.</p>
-                </div>
+                <button class="faq-q" aria-expanded="false" itemprop="name">Can Robomiracle customize Kevin for my brand or event?<div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div></button>
+                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Yes. Robomiracle's engineering team programs Kevin with fully custom interaction scripts, branded presentations, multilingual greetings, and specialized event routines. Custom chest display content, visual branding, and event-specific behaviors can all be configured. Customization is available for both purchased robots and long-term rental clients.</p></div>
             </div>
 
             <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <button class="faq-q" aria-expanded="false" itemprop="name">
-                    What is Robot as a Service (RaaS) by Robomiracle?
-                    <div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div>
-                </button>
-                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Robot as a Service (RaaS) by Robomiracle is a subscription model where businesses and institutions deploy Kevin without a large upfront purchase. The subscription includes hardware, software updates, custom programming, maintenance, operator training, and 24/7 support — on a monthly or annual basis. Ideal for enterprises, hotels, and research institutions across India.</p>
-                </div>
+                <button class="faq-q" aria-expanded="false" itemprop="name">What is Robot as a Service (RaaS) by Robomiracle?<div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div></button>
+                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Robot as a Service (RaaS) by Robomiracle is a subscription model where businesses and institutions deploy Kevin without a large upfront purchase. The subscription includes hardware, software updates, custom programming, maintenance, operator training, and 24/7 support — on a monthly or annual basis. Ideal for enterprises, hotels, and research institutions across India.</p></div>
             </div>
 
             <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <button class="faq-q" aria-expanded="false" itemprop="name">
-                    Can I buy the G1 Humanoid Robot from Robomiracle?
-                    <div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div>
-                </button>
-                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Yes. Robomiracle sells the G1 Humanoid Robot for permanent deployment at enterprises, research institutions, hotels, and exhibition centres across India. They also offer the RaaS subscription model for businesses that prefer ongoing access without full ownership. Contact sales@robomiracle.com or call +91 63804 73177 for purchase pricing and delivery timelines.</p>
-                </div>
+                <button class="faq-q" aria-expanded="false" itemprop="name">Can I buy the G1 Humanoid Robot from Robomiracle?<div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div></button>
+                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Yes. Robomiracle sells the G1 Humanoid Robot for permanent deployment at enterprises, research institutions, hotels, and exhibition centres across India. They also offer the RaaS subscription model for businesses that prefer ongoing access without full ownership. Contact sales@robomiracle.com or call +91 63804 73177 for purchase pricing and delivery timelines.</p></div>
             </div>
 
             <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <button class="faq-q" aria-expanded="false" itemprop="name">
-                    Is Robomiracle a government-recognized company in India?
-                    <div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div>
-                </button>
-                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Yes. Robomiracle Technologies Pvt. Ltd. is a DPIIT-recognized Startup India company established in 2020, headquartered in Coimbatore, Tamil Nadu. The company has served clients including TCS, SBI, TVS, and over 100 educational institutions and businesses across India — making it India's most trusted humanoid robot company.</p>
-                </div>
+                <button class="faq-q" aria-expanded="false" itemprop="name">Is Robomiracle a government-recognized company in India?<div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div></button>
+                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Yes. Robomiracle Technologies Pvt. Ltd. is a DPIIT-recognized Startup India company established in 2020, headquartered in Coimbatore, Tamil Nadu. The company has served clients including TCS, SBI, TVS, and over 100 educational institutions and businesses across India — making it India's most trusted humanoid robot company.</p></div>
             </div>
 
             <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <button class="faq-q" aria-expanded="false" itemprop="name">
-                    Which other robots does Robomiracle offer for rent in India?
-                    <div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div>
-                </button>
-                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Robomiracle's full rental fleet includes: G1 Humanoid Robot Kevin (corporate and research), Service Dinebot (restaurant and hospitality), Nila Robot (weddings and receptions), Dog Robot Go2 Air (exhibitions and education), and Robert the Dancing Robot (entertainment and events). All are available for rent or purchase across India with full support. Visit robomiracle.com for the complete lineup.</p>
-                </div>
+                <button class="faq-q" aria-expanded="false" itemprop="name">Which other robots does Robomiracle offer for rent in India?<div class="faq-toggle"><i data-lucide="plus" style="width:11px;height:11px;"></i></div></button>
+                <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Robomiracle's full rental fleet includes: G1 Humanoid Robot Kevin (corporate and research), Service Dinebot (restaurant and hospitality), Nila Robot (weddings and receptions), Dog Robot Go2 Air (exhibitions and education), and Robert the Dancing Robot (entertainment and events). All are available for rent or purchase across India with full support. Visit robomiracle.com for the complete lineup.</p></div>
             </div>
 
         </div>
@@ -946,7 +903,7 @@
             <p class="sec-desc">Send us an inquiry and we'll get back to you within 24 hours with pricing for your location across India</p>
         </div>
         <div class="contact-wrap reveal">
-            <div class="form-title">Send an Inquiry</div>
+            <div class="form-title">Send an <span>Inquiry</span></div>
             <p class="form-subtitle">Tell us about your event — venue, expected guests, and location — and we'll tailor the perfect humanoid robot experience.</p>
             <form id="inquiryForm" novalidate>
                 <div class="form-row2">
@@ -1016,13 +973,14 @@
 <footer>
     <div class="footer-main">
         <div>
-            <img src="../images/logo.webp" onerror="this.src='https://placehold.co/150x32/041322/ffffff?text=ROBOMIRACLE'" class="footer-brand-logo" alt="Robomiracle Technologies" width="150" height="32" loading="lazy">
+            <img src="../images/logo.webp" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" class="footer-brand-logo" alt="Robomiracle Technologies" width="150" height="32" loading="lazy">
+            <span class="footer-brand-name" style="display:none">ROBOMIRACLE</span>
             <p class="footer-brand-desc">Robomiracle Technologies Pvt. Ltd. — India's leading AI robotics company. We design, customize, and deploy humanoid and service robots for enterprise, research, hospitality, and events. Startup India recognized. Est. 2020, Coimbatore.</p>
             <div class="footer-socials">
                 <a href="https://www.facebook.com/robomiracle.education/" class="fsoc" title="Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
                 <a href="https://www.instagram.com/robomiracle_technologies/" class="fsoc" title="Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
                 <a href="https://www.linkedin.com/company/robomiracle" class="fsoc" title="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-                <a href="https://www.youtube.com/results?search_query=robomiracle" class="fsoc" title="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#041322"/></svg></a>
+                <a href="https://www.youtube.com/results?search_query=robomiracle" class="fsoc" title="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a0a2e"/></svg></a>
             </div>
         </div>
         <div>
@@ -1082,7 +1040,6 @@ function scrollToSection(id) {
     window.scrollTo({ top: top, behavior: 'smooth' });
 }
 
-/* TOAST */
 let toastTimer = null;
 function showToast(msg, type = 'ok', duration = 4500) {
     const t = document.getElementById('toast');
@@ -1094,7 +1051,6 @@ function showToast(msg, type = 'ok', duration = 4500) {
     toastTimer = setTimeout(() => t.classList.remove('show'), duration);
 }
 
-/* MOBILE MENU */
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileOverlay = document.getElementById('mobileOverlay');
@@ -1104,17 +1060,14 @@ hamburger.addEventListener('click', () => hamburger.classList.contains('active')
 mobileOverlay.addEventListener('click', closeMenu);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
-/* SCROLL TOP */
 const scrollTopBtn = document.getElementById('scrollTop');
 window.addEventListener('scroll', () => { scrollTopBtn.classList.toggle('visible', window.scrollY > 400); }, { passive: true });
 
-/* SCROLL REVEAL */
 const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* PHONE VALIDATION */
 const phoneInput = document.getElementById('contactPhone');
 const phoneCounter = document.getElementById('phoneCounter');
 const phoneHint = document.getElementById('phoneHint');
@@ -1142,7 +1095,6 @@ phoneInput.addEventListener('paste', function(e) {
     updatePhoneUI();
 });
 
-/* FORM SUBMIT */
 document.getElementById('inquiryForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
@@ -1178,7 +1130,6 @@ document.getElementById('inquiryForm').addEventListener('submit', async function
     }
 });
 
-/* FAQ ACCORDION */
 document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', function() {
         const item = this.closest('.faq-item');

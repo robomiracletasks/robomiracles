@@ -64,19 +64,19 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-        --ink:         #7c1506;
-        --ink-2:       #1a0503;
-        --ink-3:       #3d0a03;
-        --mid:         #c73210;
-        --muted:       #fb7c50;
-        --line:        #ffd4c2;
-        --line-2:      #fff0eb;
-        --bg:          #fff7f4;
+        --ink:         #6b21cc;
+        --ink-2:       #2d0a52;
+        --ink-3:       #5b1287;
+        --mid:         #b021b8;
+        --muted:       #e040fb;
+        --line:        #f3c4fb;
+        --line-2:      #fce4fd;
+        --bg:          #fdf4ff;
         --bg-2:        #ffffff;
-        --accent:      #e84118;
-        --accent-dark: #c73210;
-        --accent-soft: #fff5f0;
-        --accent-mid:  #ffbfa3;
+        --accent:      #e91e8c;
+        --accent-dark: #b021b8;
+        --accent-soft: #fdf0ff;
+        --accent-mid:  #f48efb;
         --gold:        #c9a84c;
         --gold-soft:   #faf5e8;
         --green:       #166534;
@@ -84,12 +84,12 @@
         --red:         #991b1b;
         --red-soft:    #fee2e2;
         --card:        #ffffff;
-        --shadow-xs:   0 1px 3px rgba(120,20,5,0.08);
-        --shadow-sm:   0 2px 8px rgba(120,20,5,0.10), 0 1px 3px rgba(120,20,5,0.06);
-        --shadow-md:   0 6px 24px rgba(120,20,5,0.12), 0 2px 8px rgba(120,20,5,0.07);
-        --shadow-lg:   0 16px 48px rgba(120,20,5,0.14), 0 4px 16px rgba(120,20,5,0.08);
-        --shadow-xl:   0 32px 80px rgba(120,20,5,0.18), 0 8px 24px rgba(120,20,5,0.10);
-        --shadow-red:  0 8px 32px rgba(232,65,24,0.30);
+        --shadow-xs:   0 1px 3px rgba(107,33,204,0.08);
+        --shadow-sm:   0 2px 8px rgba(107,33,204,0.10), 0 1px 3px rgba(107,33,204,0.06);
+        --shadow-md:   0 6px 24px rgba(107,33,204,0.12), 0 2px 8px rgba(107,33,204,0.07);
+        --shadow-lg:   0 16px 48px rgba(107,33,204,0.14), 0 4px 16px rgba(107,33,204,0.08);
+        --shadow-xl:   0 32px 80px rgba(107,33,204,0.18), 0 8px 24px rgba(107,33,204,0.10);
+        --shadow-red:  0 8px 32px rgba(233,30,140,0.30);
         --font-display:'Fraunces', Georgia, serif;
         --font-body:   'Outfit', system-ui, sans-serif;
         --radius-xs:   4px;
@@ -106,15 +106,15 @@
 
     body::before {
         content: ''; position: fixed; inset: 0;
-        background-image: linear-gradient(rgba(232,65,24,0.04) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(232,65,24,0.04) 1px, transparent 1px);
+        background-image: linear-gradient(rgba(233,30,140,0.04) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(233,30,140,0.04) 1px, transparent 1px);
         background-size: 48px 48px; pointer-events: none; z-index: 0;
     }
 
     .blob { position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; opacity: 0.5; animation: blobDrift 18s ease-in-out infinite; z-index: 0; }
-    .blob-1 { width: 500px; height: 500px; background: radial-gradient(circle, #ffbfa3 0%, transparent 70%); top: -120px; left: -80px; }
-    .blob-2 { width: 400px; height: 400px; background: radial-gradient(circle, #fed7aa 0%, transparent 70%); top: 30%; right: -100px; animation-delay: 6s; }
-    .blob-3 { width: 350px; height: 350px; background: radial-gradient(circle, #fecaca 0%, transparent 70%); bottom: 5%; left: 15%; animation-delay: 12s; }
+    .blob-1 { width: 500px; height: 500px; background: radial-gradient(circle, #f48efb 0%, transparent 70%); top: -120px; left: -80px; }
+    .blob-2 { width: 400px; height: 400px; background: radial-gradient(circle, #e9d5ff 0%, transparent 70%); top: 30%; right: -100px; animation-delay: 6s; }
+    .blob-3 { width: 350px; height: 350px; background: radial-gradient(circle, #f5d0fe 0%, transparent 70%); bottom: 5%; left: 15%; animation-delay: 12s; }
     @keyframes blobDrift { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-40px) scale(1.04)} 66%{transform:translate(-20px,25px) scale(0.96)} }
 
     /* TOAST */
@@ -124,7 +124,7 @@
     #toast.toast-err { background: var(--red-soft); color: var(--red); border: 1px solid #fca5a5; }
 
     /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; background: rgba(255,255,255,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--line); box-shadow: 0 1px 0 rgba(232,65,24,0.06); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; background: rgba(255,255,255,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--line); box-shadow: 0 1px 0 rgba(233,30,140,0.06); }
     .nav-logo img { height: 34px; width: auto; object-fit: contain; display: block; }
     .nav-links { display: flex; align-items: center; gap: 0.25rem; }
     .nav-links a { font-family: var(--font-body); font-size: 0.82rem; font-weight: 500; color: var(--muted); text-decoration: none; padding: 0.4rem 0.85rem; border-radius: var(--radius-sm); transition: color 0.2s, background 0.2s; cursor: pointer; white-space: nowrap; }
@@ -138,7 +138,7 @@
     .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    .mobile-overlay { display: none; position: fixed; inset: 0; z-index: 998; background: rgba(26,5,3,0.5); backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s; }
+    .mobile-overlay { display: none; position: fixed; inset: 0; z-index: 998; background: rgba(45,10,82,0.5); backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s; }
     .mobile-overlay.open { display: block; opacity: 1; }
 
     .mobile-menu { position: fixed; top: 65px; right: 0; bottom: 0; z-index: 999; width: 280px; max-width: 85vw; background: #fff; border-left: 1px solid var(--line); box-shadow: var(--shadow-xl); transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; overflow-y: auto; padding-top: var(--nav-h); }
@@ -169,24 +169,24 @@
     .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent-soft); color: var(--accent); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.35rem 0.85rem; border-radius: 100px; margin-bottom: 1.4rem; border: 1px solid var(--accent-mid); }
     .hero-eyebrow .live-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
-    h1.hero-title { font-family: var(--font-display); font-size: clamp(2.4rem, 4.5vw, 4.8rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; color: #7c1506; margin-bottom: 1.4rem; }
-    h1.hero-title .serif-italic { font-style: italic; font-weight: 300; background: linear-gradient(135deg, #e84118 0%, #f95f2b 50%, #fb923c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero-sub { font-size: 1rem; color: #c73210; max-width: 480px; line-height: 1.8; margin-bottom: 2rem; font-weight: 400; }
+    h1.hero-title { font-family: var(--font-display); font-size: clamp(2.4rem, 4.5vw, 4.8rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; color: #6b21cc; margin-bottom: 1.4rem; }
+    h1.hero-title .serif-italic { font-style: italic; font-weight: 300; background: linear-gradient(135deg, #e91e8c 0%, #cc21b8 50%, #d946ef 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1rem; color: #b021b8; max-width: 480px; line-height: 1.8; margin-bottom: 2rem; font-weight: 400; }
     .hero-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-    .tag { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.28rem 0.75rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; font-size: 0.7rem; font-weight: 500; color: #c73210; box-shadow: var(--shadow-xs); }
+    .tag { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.28rem 0.75rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; font-size: 0.7rem; font-weight: 500; color: #b021b8; box-shadow: var(--shadow-xs); }
     .tag svg { width: 11px; height: 11px; }
     .hero-btns { display: flex; gap: 0.85rem; flex-wrap: wrap; }
     .btn-primary { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.85rem 1.75rem; background: var(--accent); color: #fff; font-family: var(--font-body); font-weight: 600; font-size: 0.875rem; border: none; border-radius: var(--radius-md); cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap; box-shadow: var(--shadow-red); }
-    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(232,65,24,0.3); }
-    .btn-outline { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.85rem 1.75rem; background: var(--bg-2); color: #c73210; font-family: var(--font-body); font-weight: 600; font-size: 0.875rem; border: 1.5px solid var(--accent-mid); border-radius: var(--radius-md); cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap; box-shadow: var(--shadow-xs); }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(233,30,140,0.3); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.85rem 1.75rem; background: var(--bg-2); color: #b021b8; font-family: var(--font-body); font-weight: 600; font-size: 0.875rem; border: 1.5px solid var(--accent-mid); border-radius: var(--radius-md); cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap; box-shadow: var(--shadow-xs); }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); transform: translateY(-1px); }
     .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
     .hero-img-frame { position: relative; width: 100%; max-width: 440px; }
-    .hero-img-frame::before { content: ''; position: absolute; inset: 12px; background: linear-gradient(135deg, var(--accent-soft) 0%, #fff0eb 100%); border-radius: var(--radius-xl); z-index: 0; }
+    .hero-img-frame::before { content: ''; position: absolute; inset: 12px; background: linear-gradient(135deg, var(--accent-soft) 0%, #fce4fd 100%); border-radius: var(--radius-xl); z-index: 0; }
     .hero-img-frame img { position: relative; z-index: 1; width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--radius-lg); display: block; box-shadow: var(--shadow-xl); mask-image: linear-gradient(to bottom, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%); }
     .hero-stat-badge { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-md); padding: 0.65rem 0.9rem; box-shadow: var(--shadow-md); display: flex; align-items: center; gap: 0.55rem; white-space: nowrap; z-index: 3; animation: float 4s ease-in-out infinite; }
     .hero-stat-badge .badge-icon { width: 32px; height: 32px; border-radius: var(--radius-sm); background: var(--accent-soft); display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
-    .badge-val { font-size: 0.82rem; font-weight: 700; color: #7c1506; display: block; line-height: 1.2; }
+    .badge-val { font-size: 0.82rem; font-weight: 700; color: #6b21cc; display: block; line-height: 1.2; }
     .badge-lbl { font-size: 0.67rem; color: var(--muted); }
     .hero-stat-badge.left  { left: -20px; top: 22%; animation-delay: 0s; }
     .hero-stat-badge.right { right: -20px; top: 58%; animation-delay: 2s; }
@@ -197,89 +197,89 @@
     .specs-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 4rem; flex-wrap: wrap; }
     .spec-item { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; }
     .spec-value { font-size: 1.4rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
-    .spec-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(251,124,80,0.6); }
-    .spec-sep { width: 1px; height: 40px; background: rgba(251,124,80,0.15); }
+    .spec-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(224,64,251,0.6); }
+    .spec-sep { width: 1px; height: 40px; background: rgba(224,64,251,0.15); }
 
     /* TRUST BAR */
-    #trust-bar { background: var(--ink-3); padding: 1.25rem 2.5rem; border-top: 1px solid rgba(232,65,24,0.15); }
+    #trust-bar { background: var(--ink-3); padding: 1.25rem 2.5rem; border-top: 1px solid rgba(233,30,140,0.15); }
     .trust-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
-    .trust-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(251,124,80,0.55); white-space: nowrap; }
+    .trust-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(224,64,251,0.55); white-space: nowrap; }
     .trust-items { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; justify-content: center; }
-    .trust-item { font-size: 0.78rem; font-weight: 700; color: rgba(251,124,80,0.8); letter-spacing: 0.04em; }
-    .trust-sep { width: 1px; height: 18px; background: rgba(251,124,80,0.2); }
+    .trust-item { font-size: 0.78rem; font-weight: 700; color: rgba(224,64,251,0.8); letter-spacing: 0.04em; }
+    .trust-sep { width: 1px; height: 18px; background: rgba(224,64,251,0.2); }
 
     /* SECTIONS */
     .section { padding: 5.5rem 2.5rem; position: relative; }
     .container { max-width: 1280px; margin: 0 auto; }
     .sec-head { text-align: center; margin-bottom: 3.5rem; }
     .sec-eye { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; display: block; }
-    .sec-title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.18; color: #7c1506; }
-    .sec-title em { font-style: italic; font-weight: 300; color: #e84118; }
-    .sec-desc { color: #c73210; margin-top: 0.8rem; font-size: 0.95rem; max-width: 580px; margin-left: auto; margin-right: auto; }
-    .divider { width: 44px; height: 3px; background: linear-gradient(90deg, var(--accent), #fb923c); border-radius: 2px; margin: 0.85rem auto 0; }
+    .sec-title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.18; color: #6b21cc; }
+    .sec-title em { font-style: italic; font-weight: 300; color: #e91e8c; }
+    .sec-desc { color: #b021b8; margin-top: 0.8rem; font-size: 0.95rem; max-width: 580px; margin-left: auto; margin-right: auto; }
+    .divider { width: 44px; height: 3px; background: linear-gradient(90deg, var(--accent), #d946ef); border-radius: 2px; margin: 0.85rem auto 0; }
 
     /* FEATURES */
     #features-section { background: var(--bg-2); border-top: 1px solid var(--line); }
     .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 1100px; margin: 0 auto; }
     .feature-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 2rem 1.75rem; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; position: relative; overflow: hidden; }
     .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--accent-mid); }
-    .feature-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), #fb923c); opacity: 0; transition: opacity 0.25s; }
+    .feature-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), #d946ef); opacity: 0; transition: opacity 0.25s; }
     .feature-card:hover::after { opacity: 1; }
     .feat-icon { width: 44px; height: 44px; background: var(--accent-soft); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem; color: var(--accent); }
     .feat-icon svg { width: 20px; height: 20px; }
-    .feat-title { font-size: 0.95rem; font-weight: 700; color: #7c1506; margin-bottom: 0.5rem; }
-    .feat-desc { font-size: 0.85rem; color: #c73210; line-height: 1.75; }
+    .feat-title { font-size: 0.95rem; font-weight: 700; color: #6b21cc; margin-bottom: 0.5rem; }
+    .feat-desc { font-size: 0.85rem; color: #b021b8; line-height: 1.75; }
 
     /* CONTROLS DIAGRAM */
     #controls-section { background: var(--bg); border-top: 1px solid var(--line); }
     .controls-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; align-items: center; }
     .controls-img { display: flex; justify-content: center; }
-    .controls-img-box { width: 320px; height: 420px; background: linear-gradient(135deg, var(--accent-soft) 0%, #fff0eb 100%); border-radius: var(--radius-xl); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); overflow: hidden; }
+    .controls-img-box { width: 320px; height: 420px; background: linear-gradient(135deg, var(--accent-soft) 0%, #fce4fd 100%); border-radius: var(--radius-xl); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); overflow: hidden; }
     .controls-img-box img { width: 100%; height: 100%; object-fit: contain; padding: 1.5rem; }
     .controls-list { display: flex; flex-direction: column; gap: 1.1rem; }
     .ctrl-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.2rem; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-md); transition: border-color 0.2s, box-shadow 0.2s; }
     .ctrl-item:hover { border-color: var(--accent-mid); box-shadow: var(--shadow-xs); }
     .ctrl-icon { width: 36px; height: 36px; background: var(--accent-soft); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
     .ctrl-icon svg { width: 16px; height: 16px; }
-    .ctrl-name { font-size: 0.82rem; font-weight: 700; color: #7c1506; margin-bottom: 0.2rem; }
-    .ctrl-desc { font-size: 0.78rem; color: #c73210; line-height: 1.55; }
+    .ctrl-name { font-size: 0.82rem; font-weight: 700; color: #6b21cc; margin-bottom: 0.2rem; }
+    .ctrl-desc { font-size: 0.78rem; color: #b021b8; line-height: 1.55; }
 
     /* APP SECTION */
-    #app-section { background: var(--ink-2); border-top: 1px solid rgba(232,65,24,0.2); }
-    #app-section .sec-eye { color: rgba(251,124,80,0.6); }
-    #app-section .sec-title { color: #ffe4d6; }
-    #app-section .sec-title em { color: rgba(251,124,80,0.9); }
-    #app-section .sec-desc { color: rgba(251,124,80,0.7); }
+    #app-section { background: var(--ink-2); border-top: 1px solid rgba(233,30,140,0.2); }
+    #app-section .sec-eye { color: rgba(224,64,251,0.6); }
+    #app-section .sec-title { color: #f3e8ff; }
+    #app-section .sec-title em { color: rgba(224,64,251,0.9); }
+    #app-section .sec-desc { color: rgba(224,64,251,0.7); }
     .app-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto; }
     .app-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 1.75rem; display: flex; align-items: flex-start; gap: 1rem; transition: background 0.2s, border-color 0.2s; }
-    .app-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(232,65,24,0.4); }
-    .app-card-icon { width: 42px; height: 42px; background: rgba(232,65,24,0.2); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--muted); flex-shrink: 0; }
+    .app-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(233,30,140,0.4); }
+    .app-card-icon { width: 42px; height: 42px; background: rgba(233,30,140,0.2); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--muted); flex-shrink: 0; }
     .app-card-icon svg { width: 18px; height: 18px; }
-    .app-card-title { font-size: 0.9rem; font-weight: 700; color: #ffe4d6; margin-bottom: 0.4rem; }
-    .app-card-desc { font-size: 0.82rem; color: rgba(251,124,80,0.7); line-height: 1.65; }
+    .app-card-title { font-size: 0.9rem; font-weight: 700; color: #f3e8ff; margin-bottom: 0.4rem; }
+    .app-card-desc { font-size: 0.82rem; color: rgba(224,64,251,0.7); line-height: 1.65; }
 
     /* USE CASES */
     #usecases-section { background: var(--bg); border-top: 1px solid var(--line); }
     .usecases-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; max-width: 1100px; margin: 0 auto; }
     .usecase-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 1.5rem 1.25rem; text-align: center; transition: all 0.25s; }
     .usecase-card:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); transform: translateY(-3px); }
-    .uc-icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--accent) 0%, #fb923c 100%); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.9rem; color: #fff; }
+    .uc-icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--accent) 0%, #d946ef 100%); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.9rem; color: #fff; }
     .uc-icon svg { width: 20px; height: 20px; }
-    .uc-name { font-size: 0.875rem; font-weight: 700; color: #7c1506; margin-bottom: 0.35rem; }
-    .uc-desc { font-size: 0.775rem; color: #c73210; line-height: 1.6; }
+    .uc-name { font-size: 0.875rem; font-weight: 700; color: #6b21cc; margin-bottom: 0.35rem; }
+    .uc-desc { font-size: 0.775rem; color: #b021b8; line-height: 1.6; }
 
     /* SEO CONTENT */
     #seo-content { background: var(--bg-2); border-top: 1px solid var(--line); }
     .seo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; max-width: 1100px; margin: 0 auto; align-items: start; }
-    .seo-col h2 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; color: #7c1506; line-height: 1.22; margin-bottom: 1rem; letter-spacing: -0.02em; }
-    .seo-col h3 { font-size: 0.875rem; font-weight: 700; color: #9a1a08; margin: 1.5rem 0 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 0.5rem; }
+    .seo-col h2 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; color: #6b21cc; line-height: 1.22; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .seo-col h3 { font-size: 0.875rem; font-weight: 700; color: #7b1fa2; margin: 1.5rem 0 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 0.5rem; }
     .seo-col h3 svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; }
-    .seo-col p { font-size: 0.9rem; color: #c73210; line-height: 1.8; margin-bottom: 0.8rem; }
+    .seo-col p { font-size: 0.9rem; color: #b021b8; line-height: 1.8; margin-bottom: 0.8rem; }
     .seo-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
-    .seo-list li { font-size: 0.875rem; color: #c73210; display: flex; align-items: flex-start; gap: 0.55rem; line-height: 1.65; }
+    .seo-list li { font-size: 0.875rem; color: #b021b8; display: flex; align-items: flex-start; gap: 0.55rem; line-height: 1.65; }
     .seo-list li svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; margin-top: 0.25rem; }
     .kw-cloud { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.4rem; }
-    .kw-tag { padding: 0.25rem 0.65rem; background: var(--bg); border: 1px solid var(--line); border-radius: 100px; font-size: 0.68rem; color: #c73210; font-weight: 500; }
+    .kw-tag { padding: 0.25rem 0.65rem; background: var(--bg); border: 1px solid var(--line); border-radius: 100px; font-size: 0.68rem; color: #b021b8; font-weight: 500; }
 
     /* MARQUEE GALLERY */
     #gallery-section { background: var(--bg-2); border-top: 1px solid var(--line); overflow: hidden; }
@@ -296,16 +296,16 @@
     .m-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: var(--shadow-lg); }
     .m-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
     .m-card:hover img { transform: scale(1.06); }
-    .m-card-over { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(to top, rgba(26,5,3,0.88) 0%, transparent 100%); transform: translateY(30%); transition: transform 0.3s; }
+    .m-card-over { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(to top, rgba(45,10,82,0.88) 0%, transparent 100%); transform: translateY(30%); transition: transform 0.3s; }
     .m-card:hover .m-card-over { transform: translateY(0); }
     .m-card-name { font-size: 0.875rem; font-weight: 700; color: #fff; }
     .m-card-sub  { font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-top: 1px; }
 
     /* VIDEO */
-    #video-section { background: var(--ink-2); border-top: 1px solid rgba(232,65,24,0.2); }
-    #video-section .sec-eye { color: rgba(251,124,80,0.6); }
-    #video-section .sec-title { color: #ffe4d6; }
-    #video-section .sec-desc { color: rgba(251,124,80,0.7); }
+    #video-section { background: var(--ink-2); border-top: 1px solid rgba(233,30,140,0.2); }
+    #video-section .sec-eye { color: rgba(224,64,251,0.6); }
+    #video-section .sec-title { color: #f3e8ff; }
+    #video-section .sec-desc { color: rgba(224,64,251,0.7); }
     .video-shell { max-width: 480px; margin: 0 auto; border-radius: var(--radius-xl); overflow: hidden; aspect-ratio: 9/16; background: #000; box-shadow: var(--shadow-xl); border: 1px solid rgba(255,255,255,0.1); position: relative; }
     .video-shell video { width: 100%; height: 100%; object-fit: cover; display: block; }
     .vc { position: absolute; width: 20px; height: 20px; border-color: rgba(255,255,255,0.3); border-style: solid; }
@@ -321,7 +321,7 @@
     .robot-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
     .robot-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; display: block; }
     .robot-card:hover img { transform: scale(1.04); }
-    .robot-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(to top, rgba(26,5,3,0.9) 0%, rgba(26,5,3,0.3) 60%, transparent 100%); }
+    .robot-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(to top, rgba(45,10,82,0.9) 0%, rgba(45,10,82,0.3) 60%, transparent 100%); }
     .robot-card-name { font-size: 0.85rem; font-weight: 700; color: #fff; }
 
     /* FAQ */
@@ -329,30 +329,30 @@
     .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem; max-width: 1100px; margin: 0 auto; }
     .faq-item { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
     .faq-item.open { border-color: var(--accent-mid); box-shadow: var(--shadow-sm); background: var(--bg-2); }
-    .faq-q { width: 100%; display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; padding: 1.2rem 1.35rem; background: none; border: none; cursor: pointer; text-align: left; font-size: 0.875rem; font-weight: 600; color: #9a1a08; transition: color 0.2s; line-height: 1.4; }
+    .faq-q { width: 100%; display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; padding: 1.2rem 1.35rem; background: none; border: none; cursor: pointer; text-align: left; font-size: 0.875rem; font-weight: 600; color: #7b1fa2; transition: color 0.2s; line-height: 1.4; }
     .faq-item.open .faq-q { color: var(--accent); }
-    .faq-toggle { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--line); border: none; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.3s; cursor: pointer; color: #c73210; margin-top: 0.1rem; }
+    .faq-toggle { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--line); border: none; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.3s; cursor: pointer; color: #b021b8; margin-top: 0.1rem; }
     .faq-toggle svg { width: 11px; height: 11px; transition: transform 0.3s; }
     .faq-item.open .faq-toggle { background: var(--accent); color: #fff; }
     .faq-item.open .faq-toggle svg { transform: rotate(45deg); }
     .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.3s; padding: 0 1.35rem; }
     .faq-item.open .faq-a { max-height: 400px; padding: 0 1.35rem 1.2rem; }
-    .faq-a p { font-size: 0.85rem; color: #c73210; line-height: 1.78; }
+    .faq-a p { font-size: 0.85rem; color: #b021b8; line-height: 1.78; }
 
     /* CONTACT */
     #contact-section { background: var(--bg); border-top: 1px solid var(--line); }
     .contact-wrap { max-width: 680px; margin: 0 auto; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius-2xl); padding: 3rem 3.5rem; box-shadow: var(--shadow-lg); }
-    .form-title { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: #7c1506; margin-bottom: 0.3rem; }
-    .form-subtitle { font-size: 0.875rem; color: #c73210; margin-bottom: 2rem; }
+    .form-title { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: #6b21cc; margin-bottom: 0.3rem; }
+    .form-subtitle { font-size: 0.875rem; color: #b021b8; margin-bottom: 2rem; }
     .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .fg { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
-    .fg-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #c73210; }
-    .fg-input { width: 100%; padding: 0.78rem 0.95rem; background: var(--bg); border: 1.5px solid var(--line); border-radius: var(--radius-sm); color: #7c1506; font-family: var(--font-body); font-size: 0.875rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; appearance: none; }
+    .fg-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #b021b8; }
+    .fg-input { width: 100%; padding: 0.78rem 0.95rem; background: var(--bg); border: 1.5px solid var(--line); border-radius: var(--radius-sm); color: #6b21cc; font-family: var(--font-body); font-size: 0.875rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; appearance: none; }
     .fg-input::placeholder { color: var(--accent-mid); }
-    .fg-input:focus { border-color: var(--accent); background: var(--bg-2); box-shadow: 0 0 0 3px rgba(232,65,24,0.10); }
+    .fg-input:focus { border-color: var(--accent); background: var(--bg-2); box-shadow: 0 0 0 3px rgba(233,30,140,0.10); }
     .fg-input.input-error { border-color: var(--red) !important; box-shadow: 0 0 0 3px rgba(153,27,27,0.08) !important; }
     .fg-input.input-ok { border-color: var(--green) !important; box-shadow: 0 0 0 3px rgba(22,101,52,0.08) !important; }
-    select.fg-input { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23fb7c50' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19 9-7 7-7-7'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.85rem center; background-size: 0.9rem; padding-right: 2.4rem; cursor: pointer; }
+    select.fg-input { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23e040fb' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19 9-7 7-7-7'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.85rem center; background-size: 0.9rem; padding-right: 2.4rem; cursor: pointer; }
     textarea.fg-input { resize: none; }
     .phone-wrap { position: relative; }
     .phone-wrap .fg-input { padding-right: 3.4rem; }
@@ -362,7 +362,7 @@
     .phone-hint.ok  { color: var(--green); }
     .phone-hint.err { color: var(--red); }
     .form-submit { width: 100%; padding: 0.95rem; margin-top: 0.25rem; background: var(--accent); color: #fff; font-family: var(--font-body); font-weight: 700; font-size: 0.875rem; letter-spacing: 0.04em; border: none; border-radius: var(--radius-md); cursor: pointer; box-shadow: var(--shadow-red); transition: all 0.2s; }
-    .form-submit:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 10px 36px rgba(232,65,24,0.3); }
+    .form-submit:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 10px 36px rgba(233,30,140,0.3); }
     .form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
     .form-status { text-align: center; font-size: 0.84rem; font-weight: 600; margin-top: 1rem; display: none; padding: 0.8rem 1rem; border-radius: var(--radius-sm); }
     .form-status.ok  { color: var(--green); background: var(--green-soft); border: 1px solid #86efac; display: block; }
@@ -473,7 +473,7 @@
 <nav>
     <div class="nav-logo">
         <a href="../index.html" aria-label="Robomiracle Home">
-            <img src="../images/logo.webp" onerror="this.src='https://placehold.co/160x34/ffffff/e84118?text=ROBOMIRACLE'" alt="Robomiracle Technologies" width="160" height="34">
+            <img src="../images/logo.webp" onerror="this.src='https://placehold.co/160x34/ffffff/e91e8c?text=ROBOMIRACLE'" alt="Robomiracle Technologies" width="160" height="34">
         </a>
     </div>
     <div class="nav-links">
@@ -580,7 +580,7 @@
         <div class="hero-visual reveal" style="transition-delay:0.15s">
             <div class="hero-img-frame">
                 <img src="../images/products/robert/rhero.webp"
-                     onerror="this.src='https://placehold.co/440x586/fff5f0/e84118?text=Robert+DanceBot'"
+                     onerror="this.src='https://placehold.co/440x586/fdf0ff/e91e8c?text=Robert+DanceBot'"
                      alt="Robomiracle Robert DanceBot — dancing robot speaker for kids, students and families in India"
                      width="440" height="586" loading="eager">
                 <div class="hero-stat-badge left">
@@ -721,7 +721,7 @@
             <div class="controls-img reveal">
                 <div class="controls-img-box">
                     <img src="../images/products/robert/rhero.webp"
-                         onerror="this.src='https://placehold.co/300x420/fff5f0/e84118?text=Robert+Controls'"
+                         onerror="this.src='https://placehold.co/300x420/fdf0ff/e91e8c?text=Robert+Controls'"
                          alt="Robert DanceBot controls diagram"
                          loading="lazy">
                 </div>
@@ -793,7 +793,7 @@
             <span class="sec-eye">Space Robert App</span>
             <h2 class="sec-title">Full Control in <em>Your Hands</em></h2>
             <div class="divider"></div>
-            <p class="sec-desc" style="color:rgba(251,124,80,0.7);">The Space Robert companion app unlocks remote control and custom programming for unlimited fun</p>
+            <p class="sec-desc" style="color:rgba(224,64,251,0.7);">The Space Robert companion app unlocks remote control and custom programming for unlimited fun</p>
         </div>
         <div class="app-grid reveal" style="transition-delay:0.1s">
             <div class="app-card">
@@ -910,7 +910,7 @@
 <section id="seo-content" class="section" style="background: var(--bg); border-top: 1px solid var(--line);">
     <div class="container">
         <div class="seo-grid">
-            <div class="reveal">
+            <div class="seo-col reveal">
                 <h2>India's Favourite Dancing Robot Speaker for Kids</h2>
                 <p>Robomiracle Technologies Pvt. Ltd., headquartered in Coimbatore, Tamil Nadu, is India's most trusted provider of educational and entertainment robots for schools, hobby clubs, families, and events. Founded in 2020 and recognized by Startup India (DPIIT), Robomiracle serves customers across Chennai, Bangalore, Hyderabad, Mumbai, Delhi, Madurai, Trichy, Kochi, Pune, and all major Indian cities.</p>
                 <p>Robert DanceBot is Robomiracle's flagship consumer robot — a fun dancing robot speaker designed, engineered, and programmed to bring joy to kids, students, and families. Compact at 20 × 12 × 9 cm, Robert combines interactive dancing movements, Bluetooth connectivity, app-enabled control, and a high-quality 3 Ohm / 5W speaker in one delightful package.</p>
@@ -979,7 +979,7 @@
                 </ul>
             </div>
 
-            <div class="reveal" style="transition-delay:0.15s">
+            <div class="seo-col reveal" style="transition-delay:0.15s">
                 <h2>Edutainment Robotics That Children Actually Love</h2>
                 <p>Unlike passive toys, Robert DanceBot actively engages children through music, movement, and technology. The companion Space Robert app introduces kids to two core concepts: remote control (how we communicate with machines) and programming (how we write instructions for machines) — all within the context of making their robot dance.</p>
 
@@ -1068,30 +1068,30 @@
     </div>
     <div class="marquee-wrap">
         <div class="marquee-track">
-            <a href="dine.html" class="m-card"><img src="../images/products/dine/p6.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Dinebot'" alt="Service Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Hospitality Robot</div></div></a>
-            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/dogcard.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Go2+Air'" alt="Dog Robot Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Dog Robot Go2 Air</div><div class="m-card-sub">Quadruped Explorer</div></div></a>
-            <a href="kevin.html" class="m-card"><img src="../images/products/g1/p7.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=G1'" alt="G1 Humanoid Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1 Humanoid</div><div class="m-card-sub">Full Humanoid Robot</div></div></a>
-            <a href="robert.html" class="m-card"><img src="../images/products/robert/rhero.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Robert'" alt="Robert DanceBot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert DanceBot</div><div class="m-card-sub">Dancing Robot Speaker</div></div></a>
-            <a href="dine.html" class="m-card"><img src="../images/products/dine/p7.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Dinebot'" alt="Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Hospitality Robot</div></div></a>
-            <a href="nila.html" class="m-card"><img src="../images/products/nila/p3.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Wedding / Reception</div></div></a>
-            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/shero.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Go2+Air'" alt="Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Dog Robot Go2 Air</div><div class="m-card-sub">Quadruped Explorer</div></div></a>
-            <a href="kevin.html" class="m-card"><img src="../images/products/g1/hero.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=G1'" alt="G1 Humanoid" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1 Humanoid</div><div class="m-card-sub">Full Humanoid Robot</div></div></a>
-            <a href="robert.html" class="m-card"><img src="../images/products/robert/hero.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Robert'" alt="Robert Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert DanceBot</div><div class="m-card-sub">Dancing Robot Speaker</div></div></a>
-            <a href="nila.html" class="m-card"><img src="../images/products/nila/p1.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Corporate Events</div></div></a>
+            <a href="dine.html" class="m-card"><img src="../images/products/dine/p6.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Dinebot'" alt="Service Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Hospitality Robot</div></div></a>
+            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/dogcard.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Go2+Air'" alt="Dog Robot Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Dog Robot Go2 Air</div><div class="m-card-sub">Quadruped Explorer</div></div></a>
+            <a href="kevin.html" class="m-card"><img src="../images/products/g1/p7.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=G1'" alt="G1 Humanoid Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1 Humanoid</div><div class="m-card-sub">Full Humanoid Robot</div></div></a>
+            <a href="robert.html" class="m-card"><img src="../images/products/robert/rhero.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Robert'" alt="Robert DanceBot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert DanceBot</div><div class="m-card-sub">Dancing Robot Speaker</div></div></a>
+            <a href="dine.html" class="m-card"><img src="../images/products/dine/p7.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Dinebot'" alt="Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Hospitality Robot</div></div></a>
+            <a href="nila.html" class="m-card"><img src="../images/products/nila/p3.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Wedding / Reception</div></div></a>
+            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/shero.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Go2+Air'" alt="Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Dog Robot Go2 Air</div><div class="m-card-sub">Quadruped Explorer</div></div></a>
+            <a href="kevin.html" class="m-card"><img src="../images/products/g1/hero.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=G1'" alt="G1 Humanoid" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1 Humanoid</div><div class="m-card-sub">Full Humanoid Robot</div></div></a>
+            <a href="robert.html" class="m-card"><img src="../images/products/robert/hero.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Robert'" alt="Robert Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert DanceBot</div><div class="m-card-sub">Dancing Robot Speaker</div></div></a>
+            <a href="nila.html" class="m-card"><img src="../images/products/nila/p1.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Corporate Events</div></div></a>
         </div>
     </div>
     <div class="marquee-wrap" style="margin-top:1rem;">
         <div class="marquee-track rev">
-            <a href="nila.html" class="m-card"><img src="../images/products/nila/p1.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Corporate Events</div></div></a>
-            <a href="robert.html" class="m-card"><img src="../images/products/robert/rhero.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Robert'" alt="Robert DanceBot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert DanceBot</div><div class="m-card-sub">Dancer</div></div></a>
-            <a href="kevin.html" class="m-card"><img src="../images/products/g1/p7.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=G1'" alt="G1 Humanoid" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1</div><div class="m-card-sub">Intelligent Humanoid</div></div></a>
-            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/dogcard.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Go2+Air'" alt="Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Go2 Air</div><div class="m-card-sub">Agile Quadruped</div></div></a>
-            <a href="dine.html" class="m-card"><img src="../images/products/dine/p6.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Dinebot'" alt="Service Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Restaurant &amp; Events</div></div></a>
-            <a href="robert.html" class="m-card"><img src="../images/products/robert/hero.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Robert'" alt="Robert DanceBot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert DanceBot</div><div class="m-card-sub">Dancer</div></div></a>
-            <a href="kevin.html" class="m-card"><img src="../images/products/g1/hero.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=G1'" alt="G1 Humanoid" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1</div><div class="m-card-sub">Intelligent Humanoid</div></div></a>
-            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/shero.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Go2+Air'" alt="Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Go2 Air</div><div class="m-card-sub">Agile Quadruped</div></div></a>
-            <a href="dine.html" class="m-card"><img src="../images/products/dine/p7.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Dinebot'" alt="Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Restaurant &amp; Events</div></div></a>
-            <a href="nila.html" class="m-card"><img src="../images/products/nila/p3.webp" onerror="this.src='https://placehold.co/240x310/fff7f4/e84118?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Wedding / Reception</div></div></a>
+            <a href="nila.html" class="m-card"><img src="../images/products/nila/p1.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Corporate Events</div></div></a>
+            <a href="robert.html" class="m-card"><img src="../images/products/robert/rhero.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Robert'" alt="Robert DanceBot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert DanceBot</div><div class="m-card-sub">Dancer</div></div></a>
+            <a href="kevin.html" class="m-card"><img src="../images/products/g1/p7.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=G1'" alt="G1 Humanoid" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1</div><div class="m-card-sub">Intelligent Humanoid</div></div></a>
+            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/dogcard.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Go2+Air'" alt="Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Go2 Air</div><div class="m-card-sub">Agile Quadruped</div></div></a>
+            <a href="dine.html" class="m-card"><img src="../images/products/dine/p6.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Dinebot'" alt="Service Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Restaurant &amp; Events</div></div></a>
+            <a href="robert.html" class="m-card"><img src="../images/products/robert/hero.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Robert'" alt="Robert DanceBot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Robert DanceBot</div><div class="m-card-sub">Dancer</div></div></a>
+            <a href="kevin.html" class="m-card"><img src="../images/products/g1/hero.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=G1'" alt="G1 Humanoid" loading="lazy"><div class="m-card-over"><div class="m-card-name">G1</div><div class="m-card-sub">Intelligent Humanoid</div></div></a>
+            <a href="go2.html" class="m-card"><img src="../images/products/go2pro/shero.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Go2+Air'" alt="Go2 Air" loading="lazy"><div class="m-card-over"><div class="m-card-name">Go2 Air</div><div class="m-card-sub">Agile Quadruped</div></div></a>
+            <a href="dine.html" class="m-card"><img src="../images/products/dine/p7.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Dinebot'" alt="Dinebot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Service Dinebot</div><div class="m-card-sub">Restaurant &amp; Events</div></div></a>
+            <a href="nila.html" class="m-card"><img src="../images/products/nila/p3.webp" onerror="this.src='https://placehold.co/240x310/fdf4ff/e91e8c?text=Nila'" alt="Nila Robot" loading="lazy"><div class="m-card-over"><div class="m-card-name">Nila</div><div class="m-card-sub">Wedding / Reception</div></div></a>
         </div>
     </div>
 </section>
@@ -1103,12 +1103,12 @@
             <span class="sec-eye">In Action</span>
             <h2 class="sec-title">Watch Robert <em>Dance Live</em></h2>
             <div class="divider"></div>
-            <p class="sec-desc" style="color:rgba(251,124,80,0.7);">See Robert groove to the beat with interactive dance movements and LED light effects</p>
+            <p class="sec-desc" style="color:rgba(224,64,251,0.7);">See Robert groove to the beat with interactive dance movements and LED light effects</p>
         </div>
         <div class="reveal" style="transition-delay:0.1s">
             <div class="video-shell">
                 <video autoplay loop muted playsinline
-                       poster="https://placehold.co/1080x1920/1a0503/e84118?text=Robert+In+Action"
+                       poster="https://placehold.co/1080x1920/2d0a52/e91e8c?text=Robert+In+Action"
                        aria-label="Robomiracle Robert DanceBot dancing robot speaker demo video">
                     <source src="../images/products/robert/Robert.mp4" type="video/mp4">
                     Your browser does not support HTML5 video.
@@ -1130,14 +1130,14 @@
             <p class="sec-desc">Robert dancing at schools, homes, parties, and exhibitions across India</p>
         </div>
         <div class="robots-grid">
-            <div class="robot-card reveal" style="transition-delay:0s"><img src="../images/products/robert/p8.webp" onerror="this.src='https://placehold.co/300x400/fff5f0/e84118?text=Robert'" alt="Robert DanceBot dancing" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Dance Performance</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.05s"><img src="../images/products/robert/p2.webp" onerror="this.src='https://placehold.co/300x400/fff5f0/e84118?text=Robert'" alt="Robert DanceBot full view" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Full View</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.10s"><img src="../images/products/robert/p3.webp" onerror="this.src='https://placehold.co/300x400/fff5f0/e84118?text=Robert'" alt="Robert DanceBot LED lights" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">LED Lights</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.15s"><img src="../images/products/robert/p4.webp" onerror="this.src='https://placehold.co/300x400/fff5f0/e84118?text=Robert'" alt="Robert DanceBot at school" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">School Demo</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.20s"><img src="../images/products/robert/p6.webp" onerror="this.src='https://placehold.co/300x400/fff5f0/e84118?text=Robert'" alt="Robert DanceBot side view" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Side View</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.25s"><img src="../images/products/robert/p9.webp" onerror="this.src='https://placehold.co/300x400/fff5f0/e84118?text=Robert'" alt="Robert DanceBot exhibition" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Exhibition</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.30s"><img src="../images/products/robert/p7.webp" onerror="this.src='https://placehold.co/300x400/fff5f0/e84118?text=Robert'" alt="Robert DanceBot front view" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Front View</div></div></div>
-            <div class="robot-card reveal" style="transition-delay:0.35s"><img src="../images/products/robert/p1.webp" onerror="this.src='https://placehold.co/300x400/fff5f0/e84118?text=Robert'" alt="Robert DanceBot app control" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">App Control</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0s"><img src="../images/products/robert/p8.webp" onerror="this.src='https://placehold.co/300x400/fdf0ff/e91e8c?text=Robert'" alt="Robert DanceBot dancing" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Dance Performance</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.05s"><img src="../images/products/robert/p2.webp" onerror="this.src='https://placehold.co/300x400/fdf0ff/e91e8c?text=Robert'" alt="Robert DanceBot full view" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Full View</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.10s"><img src="../images/products/robert/p3.webp" onerror="this.src='https://placehold.co/300x400/fdf0ff/e91e8c?text=Robert'" alt="Robert DanceBot LED lights" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">LED Lights</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.15s"><img src="../images/products/robert/p4.webp" onerror="this.src='https://placehold.co/300x400/fdf0ff/e91e8c?text=Robert'" alt="Robert DanceBot at school" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">School Demo</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.20s"><img src="../images/products/robert/p6.webp" onerror="this.src='https://placehold.co/300x400/fdf0ff/e91e8c?text=Robert'" alt="Robert DanceBot side view" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Side View</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.25s"><img src="../images/products/robert/p9.webp" onerror="this.src='https://placehold.co/300x400/fdf0ff/e91e8c?text=Robert'" alt="Robert DanceBot exhibition" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Exhibition</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.30s"><img src="../images/products/robert/p7.webp" onerror="this.src='https://placehold.co/300x400/fdf0ff/e91e8c?text=Robert'" alt="Robert DanceBot front view" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">Front View</div></div></div>
+            <div class="robot-card reveal" style="transition-delay:0.35s"><img src="../images/products/robert/p1.webp" onerror="this.src='https://placehold.co/300x400/fdf0ff/e91e8c?text=Robert'" alt="Robert DanceBot app control" loading="lazy"><div class="robot-card-info"><div class="robot-card-name">App Control</div></div></div>
         </div>
     </div>
 </section>
@@ -1362,7 +1362,7 @@
 <footer>
     <div class="footer-main">
         <div>
-            <img src="../images/logo.webp" onerror="this.src='https://placehold.co/150x32/1a0503/ffffff?text=ROBOMIRACLE'" class="footer-brand-logo" alt="Robomiracle Technologies" width="150" height="32" loading="lazy">
+            <img src="../images/logo.webp" onerror="this.src='https://placehold.co/150x32/2d0a52/ffffff?text=ROBOMIRACLE'" class="footer-brand-logo" alt="Robomiracle Technologies" width="150" height="32" loading="lazy">
             <p class="footer-brand-desc">Robomiracle Technologies Pvt. Ltd. — India's leading AI robotics company. We design, customize, and deploy entertainment and service robots for education, hospitality, events, and families. Startup India recognized. Est. 2020, Coimbatore.</p>
             <div class="footer-socials">
                 <a href="https://www.facebook.com/robomiracle.education/" class="fsoc" title="Facebook" target="_blank" rel="noopener noreferrer">
@@ -1375,7 +1375,7 @@
                     <svg viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                 </a>
                 <a href="https://www.youtube.com/results?search_query=robomiracle" class="fsoc" title="YouTube" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px;"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#1a0503"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px;"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#2d0a52"/></svg>
                 </a>
             </div>
         </div>

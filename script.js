@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const SLIDE_DATA = [
         {
             eyebrow:   'Welcome to Robomiracle',
-            title:     'Robotics Company in India<br><em class="accent">Custom Robots & Rental Services</em>',
+            title:     'Leading Robotics Company in India<br><em class="accent">Custom Robots & Rental Services</em>',
             titleClass:'title-white',
             desc:      'Precision Manufacturing. Crafted in India.',
             descClass: 'desc-white',
@@ -136,23 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             eyebrow:   'Meet',
-            title:     'Nila',
-            titleClass:'title-product',
-            desc:      "",
-            descClass: 'desc-white',
-            btnText:   'Discover Nila',
-            btnLink:   './products/nila.html',
-            position:  'pos-left',
-            extraTop:  ''
-        },
-        {
-            eyebrow:   'Meet',
-            title:     'Aurra',
+            title:     'Nova',
             titleClass:'title-product',
             desc:      '',
             descClass: 'desc-white',
-            btnText:   'Discover Aurra',
-            btnLink:   './products/aurra.html',
+            btnText:   'Discover Nova',
+            btnLink:   './products/nova.html',
             position:  'pos-left',
             extraTop:  ''
         },
@@ -167,17 +156,29 @@ document.addEventListener('DOMContentLoaded', () => {
             position:  'pos-left',
             extraTop:  ''
         },
+               
         {
             eyebrow:   'Meet',
-            title:     'Nova',
+            title:     'Aurra',
             titleClass:'title-product',
             desc:      '',
             descClass: 'desc-white',
-            btnText:   'Discover Nova',
-            btnLink:   './products/nova.html',
+            btnText:   'Discover Aurra',
+            btnLink:   './products/aurra.html',
             position:  'pos-left',
             extraTop:  ''
-        }
+        },
+        {
+            eyebrow:   'Meet',
+            title:     'Nila',
+            titleClass:'title-product',
+            desc:      "",
+            descClass: 'desc-white',
+            btnText:   'Discover Nila',
+            btnLink:   './products/nila.html',
+            position:  'pos-left',
+            extraTop:  ''
+        },
     ];
 
     /* ══════════════════════════════
